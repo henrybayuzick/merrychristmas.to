@@ -62,9 +62,6 @@ function createMetronomoScore() {
             }
       }
 
-      console.log(high); // DEBUG
-      console.log(low); // DEBUG
-
       var metronomeScore = {
             "high" : high,
             "low" : low
@@ -89,35 +86,135 @@ function toggleMetronome() {
 }
 
 // Beats
+var beatOnePlayer = new Tone.Player();
+var beatOne = {
+  "selector" : '[data-beat-one]',
+  "name" : "Rap beat",
+  "url_100" : audioDirectory + "beat_nutcracker_100.mp3",
+  "url_120" : audioDirectory + "beat_nutcracker_120.mp3",
+  "volume" : -200,
+  "player" : beatOnePlayer,
+  "toggled" : false
+}
+
+var beatTwoPlayer = new Tone.Player();
 var beatTwo = {
+  "selector" : '[data-beat-two]',
   "name" : "Rock beat",
   "url_100" : audioDirectory + "beat_jingle_100.mp3",
   "url_120" : audioDirectory + "beat_jingle_120.mp3",
   "volume" : -200,
+  "player" : beatTwoPlayer,
+  "toggled" : false
 }
 
-var beatTwoPlayer = new Tone.Player();
-
-function setBeatTwoPlayer () {
-  Tone.Transport.setTimeline(function(time){ beatTwoPlayer.start(time); }, "0:0:0");
-  Tone.Transport.setTimeline(function(time){ beatTwoPlayer.stop(time); }, bars-2 + ":3:0"); // Make sure it is stopped right before you start it again
-  beatTwoPlayer.toMaster();
-  beatTwoPlayer.setVolume(beatTwo.volume);
+// Leads
+var leadOnePlayer = new Tone.Player();
+var leadOne = {
+  "selector" : '[data-lead-one]',
+  "name" : "Rap lead",
+  "url_100" : audioDirectory + "lead_nutcracker_100.mp3",
+  "url_120" : audioDirectory + "lead_nutcracker_120.mp3",
+  "volume" : -200,
+  "player" : leadOnePlayer,
+  "toggled" : false
 }
 
-var beatTwoToggled = false;
-function toggleBeatTwo() {
-  if (beatTwoToggled != true) {
-    beatTwoPlayer.setVolume(-10);
-    beatTwo.volume = -10;
-    $('[data-beat-two]').addClass('btn-enabled');
-    beatTwoToggled = true;
+var leadTwoPlayer = new Tone.Player();
+var leadTwo = {
+  "selector" : '[data-lead-two]',
+  "name" : "Rock lead",
+  "url_100" : audioDirectory + "lead_jingle_100.mp3",
+  "url_120" : audioDirectory + "lead_jingle_120.mp3",
+  "volume" : -200,
+  "player" : leadTwoPlayer,
+  "toggled" : false
+}
+
+
+var numberOfBeats = 2;
+var numberOfLeads = 2;
+var numberOfPlayers = numberOfBeats + numberOfLeads;
+
+players = [
+  { "playerDetails" : beatOne, "player": beatOnePlayer },
+  { "playerDetails" : beatTwo, "player": beatTwoPlayer },
+  { "playerDetails" : leadOne, "player": leadOnePlayer },
+  { "playerDetails" : leadTwo, "player": leadTwoPlayer },
+]
+
+function setPlayers (object, player) {
+  object.player = player;
+  Tone.Transport.setTimeline(function(time){ player.start(time); }, "0:0:0");
+  Tone.Transport.setTimeline(function(time){ player.stop(time); }, bars-2 + ":3:0"); // Make sure it is stopped right before you start it again
+  player.toMaster();
+  player.setVolume(object.volume);
+}
+
+function toggleOffBeats() {
+    for (var i = 0; i < numberOfBeats; i++) {
+      $(players[i].playerDetails.selector).removeClass('btn-enabled');
+      players[i].playerDetails.toggled = false;
+      players[i].player.setVolume(-200);
+      players[i].playerDetails.volume = -200;
+    }
+}
+
+function toggleOffLeads() {
+    for (var i = numberOfBeats; i < numberOfPlayers; i++) {
+      $(players[i].playerDetails.selector).removeClass('btn-enabled');
+      players[i].playerDetails.toggled = false;
+      players[i].player.setVolume(-200);
+      players[i].playerDetails.volume = -200;
+    }
+}
+
+function togglePlayer(object, toggle) {
+  if (object.toggled != true) {
+    if (toggle == "beats") {
+      toggleOffBeats();
+    } else if (toggle == "leads") {
+      toggleOffLeads();
+    }
+    object.player.setVolume(-10);
+    object.volume = -10;
+    $(object.selector).addClass('btn-enabled');
+    object.toggled = true;
   }
   else {
-    beatTwoPlayer.setVolume(-200);
-    beatTwo.volume = -200;
-    $('[data-beat-two]').removeClass('btn-enabled');
-    beatTwoToggled = false;
+    object.player.setVolume(-200);
+    object.volume = -200;
+    $(object.selector).removeClass('btn-enabled');
+    object.toggled = false;
+  }
+}
+
+function disposePlayers() {
+  for (var i = 0; i < numberOfPlayers; i++) {
+    players[i].player.dispose();
+  }
+}
+
+function stopAllPlayers() {
+  for (var i = 0; i < numberOfPlayers; i++) {
+    players[i].player.stop();
+  }
+}
+
+function changeTempo(tempo){
+  disposePlayers(); // Dispose of old players
+  var playerName;
+  for (var i = 0; i < numberOfPlayers; i++) {
+    //playerName = players[i].playerDetails.name; TODO: Remove
+    switch (tempo) {
+      case 100:
+        players[i].player = new Tone.Player(players[i].playerDetails.url_100); // Creates new player object for each beat and lead
+        break;
+      case 120:
+        players[i].player = new Tone.Player(players[i].playerDetails.url_120); // Creates new player object for each beat and lead
+        break;
+    }
+    setPlayers(players[i].playerDetails, players[i].player); // Sets timeline, connects to master, sets volume
   }
 }
 
@@ -125,47 +222,24 @@ function toggleBeatTwo() {
 $('[data-bpm]').change(function () {
   // Stop everything that is playing
   Tone.Transport.stop();
-  beatTwoPlayer.stop();
+  stopAllPlayers();
 
    // Update current BPM to selected value
   $('[data-bpm] option:selected').each(function() { currentBPM = $(this).text(); });
-  Tone.Transport.setBpm(currentBPM);
+  Tone.Transport.setBpm(currentBPM);;
+  Tone.Transport.setTransportTime("0:0:0");   // Set transport time back to 0:0:0
 
-  // Set transport time back to 0:0:0
-  Tone.Transport.setTransportTime("0:0:0");
+  switch (+currentBPM) {
+    case 100:
+      changeTempo(100);
+      break;
+    case 120:
+      changeTempo(120);
+      break; 
+  }
 
-    if (currentBPM == 100) {
-      // Dispose of old players
-      beatTwoPlayer.dispose();
+  setTimeout(function() { if (startScreen != true) { Tone.Transport.start(); }}, 500);
 
-      // Load all files at 100 BPM
-      beatTwoPlayer = new Tone.Player(beatTwo.url_100, function() { console.log('Beat 2 100 Loaded'); });
-
-      // Run default tasks for each player
-      setBeatTwoPlayer(); // Sets timeline, connects to master, sets volume
-
-      setTimeout(function() {
-         Tone.Transport.start();
-      }, 500);
-
-
-    } else if (currentBPM == 120) {
-      // Dispose of old players
-      beatTwoPlayer.dispose();
-
-      // Load all files at 120 BPM
-      beatTwoPlayer = new Tone.Player(beatTwo.url_120, function() { console.log('Beat 2 120 Loaded'); });
-
-      // Run default tasks for each player
-      setBeatTwoPlayer(); // Sets timeline, connects to master, sets volume
-
-      setTimeout(function() {
-        if (startScreen != true) {
-         Tone.Transport.start();
-        }
-      }, 500);
-    }
-    
 }).change();
 
 $('[data-update-bpm]').click(function(){ Tone.Transport.start(); })   // Start transport again
@@ -180,12 +254,12 @@ $('[data-play]').click(function() { play(); });                   // Stop
 $('[data-click]').click(function() { toggleMetronome(); });       // Toggle metronome
 
 // Beats
-$('[data-beat-one]').click(function() { toggleBeatOne(); });
-$('[data-beat-two]').click(function() { toggleBeatTwo(); });
+$('[data-beat-one]').click(function() { togglePlayer(beatOne, "beats"); });
+$('[data-beat-two]').click(function() { togglePlayer(beatTwo, "beats"); });
 
 // Leads
-$('[data-lead-one]').click(function() { toggleLeadOne(); });
-$('[data-lead-two]').click(function() { toggleLeadTwo(); });
+$('[data-lead-one]').click(function() { togglePlayer(leadOne, "leads"); });
+$('[data-lead-two]').click(function() { togglePlayer(leadTwo, "leads"); });
 
 // Pad
 $('[data-kick]').click(function()  { playKick(); });              // Play Kick
