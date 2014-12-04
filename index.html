@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src="//use.typekit.net/dlk2duf.js"></script>
+        <script>try{Typekit.load();}catch(e){}</script>
+
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+
+    <section>
+        <div data-start-screen class="screen ">
+            <div class="screen-content wrapper">
+                    <h2>Build your own</h2>
+                    <h1>Christmas Card</h1>
+
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id tristique dui. Donec libero nisl, placerat venenatis velit at, tempus hendrerit mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+
+                <button data-get-started>Get Started</button>
+                <button data-instructions class="btn-gray">Instructions</button>
+            </div>
+        </div>
+    </section>
+
+    <section data-builder class="builder">
+        <div class="wrapper">
+            <h3>Select a beat</h3>
+            <div class="grid">
+                <div class="col-1-4">
+                    <a data-beat-one class="btn btn-full">Beat 1</a>
+                </div>
+                <div class="col-1-4">
+                    <a data-beat-two class="btn btn-full">Beat 2</a>
+                </div>
+                <div class="col-1-4">
+                    <a class="btn btn-full">Beat 3</a>
+                </div>
+                <div class="col-1-4">
+                    <a class="btn btn-full">Beat 4</a>
+                </div>
+            </div>
+
+            <h3>Select a lead</h3>
+            <div class="grid">
+                <div class="col-1-4">
+                    <a data-lead-one class="btn btn-full">Loading</a>
+                </div>
+                <div class="col-1-4">
+                    <a data-lead-two class="btn btn-full">Lead 2</a>
+                </div>
+                <div class="col-1-4">
+                    <a class="btn btn-full">Lead 3</a>
+                </div>
+                <div class="col-1-4">
+                    <a class="btn btn-full">Lead 4</a>
+                </div>
+            </div>
+
+            <h3>Spice it up</h3>
+            <div class="grid">
+                <div class="col-1-4">
+                    <button data-kick class="btn btn-full btn-tall">
+                        Loading<br/>
+                    </button>
+                </div>
+                <div class="col-1-4">
+                    <button data-snare class="btn btn-full btn-tall">
+                        Loading<br/>
+                    </button>
+                </div>
+                <div class="col-1-4">
+                    <button data-hat class="btn btn-full btn-tall">
+                        Loading<br/>
+                    </button>
+                </div>
+                <div class="col-1-4">
+                    <button class="btn btn-full btn-tall">
+                        Rim<br/>
+                        (4)
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="col-1-4">
+                    <button class="btn btn-full btn-tall">
+                        Empty<br/>
+                        (5)
+                    </button>
+                </div>
+                <div class="col-1-4">
+                    <button class="btn btn-full btn-tall">
+                        Empty<br/>
+                        (6)
+                    </button>
+                </div>
+                <div class="col-1-4">
+                    <button class="btn btn-full btn-tall">
+                        Empty<br/>
+                        (7)
+                    </button>
+                </div>
+                <div class="col-1-4">
+                    <button class="btn btn-full btn-tall">
+                        Empty<br/>
+                        (8)
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="col-1-4">
+                    <button class="btn btn-full btn-tall">
+                        Empty<br/>
+                        (9)
+                    </button>
+                </div>
+                <div class="col-1-4">
+                    <button class="btn btn-full btn-tall">
+                        Empty<br/>
+                        (0)
+                    </button>
+                </div>
+                <div class="col-1-4">
+                    <button class="btn btn-full btn-tall">
+                        Empty<br/>
+                        (-)
+                    </button>
+                </div>
+                <div class="col-1-4">
+                    <button class="btn btn-full btn-tall">
+                        Empty<br/>
+                        (=)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <div class="progress-bar">
+                <div data-current-progress class="current-progress"></div>
+            </div>
+            <div class="wrapper pt1 pb1">
+                <div class="record">
+                    <div class="rec-outer">
+                        <div class="rec-inner"></div>
+                    </div>
+                    <span>REC</span>
+                </div>
+                <div class="float-right mt1">
+                    <select data-bpm>
+                        <option>100</option>
+                        <option selected="selected">120</option>
+                    </select>
+                    <button data-click class="btn-small">Click</button>
+                    <!--<button data-update-bpm class="btn-small">Update BPM</button>-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/vendor/Tone.min.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+    </body>
+</html>

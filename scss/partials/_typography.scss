@@ -1,0 +1,50 @@
+html {
+	font-size: $base-font-size;
+	-webkit-font-smoothing: antialiased;
+	text-align: center;
+}
+
+body {
+	font-family: $font-family;
+	line-height: $base-line-height;
+	font-weight: 400;
+	color: $base-color;
+}
+
+h1 {
+	font-size:5.5rem;
+	color:$red;
+	font-weight: 900;
+	text-transform: uppercase;
+	line-height:1;
+}
+
+h2 {
+	font-size:3rem;
+	color:$gray;
+	font-weight: 100;
+	text-transform: uppercase;
+	line-height:1.2;
+}
+
+h3 {
+	margin:$space*3 0 $space 0;
+	font-size:1.6rem;
+	font-weight:900;
+	text-transform: uppercase;
+}
+
+a {
+	color: $base-link-color;
+	text-decoration: none;
+	transition: color 0.3s ease;
+	-webkit-transition: color 0.3s ease;
+
+	&:hover { color: $base-link-hover-color; }
+}
+
+p { margin: $space 0; }
+
+.toolbar {
+	color:$white;
+}

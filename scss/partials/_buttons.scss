@@ -1,0 +1,80 @@
+button, .btn {
+	font-size:1rem;
+	border-radius: 15px;
+	padding:15px $space*2;
+	border: 2px solid $light-green;
+	text-transform: uppercase;
+	font-family: $font-family;
+	-webkit-font-smoothing: antialiased;
+	letter-spacing: .1rem;
+	color:$light-green;
+	background:transparent;
+	outline:0;
+	cursor: pointer;
+	margin:0 $space/2;
+	line-height: 1.3rem;
+	font-size:.9rem;
+	
+
+	&:hover {
+		background:$light-green;
+		color:$white;
+	}
+
+	&.btn-gray {
+		//background:$red;
+		border:2px solid $red;
+		color:$red;
+
+		&:hover {
+			color:$white;
+			background:$red;
+			border-color:$red;
+		}
+	}
+
+	&.btn-full {
+		display:block;
+		width:100%;
+	}
+
+	&.btn-tall {
+		height:95px;
+	}
+
+	&.btn-small {
+		padding:1px $space/2;
+		font-size:.7rem;
+		border-width:1px;
+		border-radius: 6px;
+		color:$white;
+	}
+
+	&.btn-enabled {
+		background:$light-green;
+		color:$white;
+	}
+}
+
+.record {
+	display:inline-block;
+}
+
+.rec-outer {
+	background:$white;
+	width:54px;
+	height:54px;
+	border-radius: 50%;
+	margin:0 auto;
+}
+
+.rec-inner {
+	background:$red;
+	width:42px;
+	height:42px;
+	border-radius: 50%;
+	margin:0 auto;
+	position: relative;
+  	top: 50%;
+  	transform: translateY(-50%);
+}
