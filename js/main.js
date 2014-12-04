@@ -1,5 +1,4 @@
 // Start debug
-
 console.log("Transport: "+Tone.Transport.state);
 
 // Transport time in console
@@ -10,7 +9,6 @@ Tone.Transport.setInterval(function(){
 Tone.Transport.setInterval(function(){
   console.log("Transport time: "+Tone.Transport.getTransportTime());
 },"0:1:0")
-
 // End debug
 
 // Samples
@@ -35,54 +33,52 @@ var curentWidth               = 0;
 var metronomeState = "off";
 
 var metronome = new Tone.MultiSampler({
-      "high" : audioDirectory + "logic1.wav",
-      "low" : audioDirectory + "logic2.wav"
-}, function(){
-      console.log('metronome loaded'); // DEBUG
+  "high" : audioDirectory + "logic1.wav",
+  "low" : audioDirectory + "logic2.wav"
 });
 
 metronome.toMaster();
 metronome.setVolume(-200);
 
 function createMetronomoScore() {
-      var high = [];
-      var low = [];
+  var high = [];
+  var low = [];
 
-      for (var i = 0; i <= bars - 1; i++) {
-            high.push(i + ":0:0");
-            Tone.Transport.setTimeline(function(time){
-            metronome.triggerAttack("high", time);
-            }, i + ":0:0");
+  for (var i = 0; i <= bars - 1; i++) {
+    high.push(i + ":0:0");
+    Tone.Transport.setTimeline(function(time){
+      metronome.triggerAttack("high", time);
+    }, i + ":0:0");
 
-            for (var k = 1; k <= 3; k ++) {
-                  low.push( i + ":" + k + ":0");
-                  Tone.Transport.setTimeline(function(time){
-                  metronome.triggerAttack("low", time);
-                  }, i + ":" + k + ":0");
-            }
-      }
+    for (var k = 1; k <= 3; k ++) {
+      low.push( i + ":" + k + ":0");
+      Tone.Transport.setTimeline(function(time){
+        metronome.triggerAttack("low", time);
+      }, i + ":" + k + ":0");
+    }
+  }
 
-      var metronomeScore = {
-            "high" : high,
-            "low" : low
-      };
+  var metronomeScore = {
+    "high" : high,
+    "low" : low
+  };
 
-      return metronomeScore;
+  return metronomeScore;
 }
 
 var metronomeScore = Tone.Note.parseScore(createMetronomoScore());
 
 function toggleMetronome() {
-      if (metronomeState == "off") {
-          metronome.setVolume(0);
-          metronomeState = "on";
-          $('[data-click]').addClass('btn-enabled');
-      }
-      else {
-        metronome.setVolume(-200);
-        metronomeState = "off";
-        $('[data-click]').removeClass('btn-enabled');
-      }
+  if (metronomeState == "off") {
+      metronome.setVolume(0);
+      metronomeState = "on";
+      $('[data-click]').addClass('btn-enabled');
+  }
+  else {
+    metronome.setVolume(-200);
+    metronomeState = "off";
+    $('[data-click]').removeClass('btn-enabled');
+  }
 }
 
 // Beats
@@ -131,7 +127,7 @@ var leadTwo = {
   "toggled" : false
 }
 
-
+// Players
 var numberOfBeats = 2;
 var numberOfLeads = 2;
 var numberOfPlayers = numberOfBeats + numberOfLeads;
@@ -142,14 +138,6 @@ players = [
   { "playerDetails" : leadOne, "player": leadOnePlayer },
   { "playerDetails" : leadTwo, "player": leadTwoPlayer },
 ]
-
-function setPlayers (object, player) {
-  object.player = player;
-  Tone.Transport.setTimeline(function(time){ player.start(time); }, "0:0:0");
-  Tone.Transport.setTimeline(function(time){ player.stop(time); }, bars-2 + ":3:0"); // Make sure it is stopped right before you start it again
-  player.toMaster();
-  player.setVolume(object.volume);
-}
 
 function toggleOffBeats() {
     for (var i = 0; i < numberOfBeats; i++) {
@@ -189,6 +177,14 @@ function togglePlayer(object, toggle) {
   }
 }
 
+function setPlayers (object, player) {
+  object.player = player;
+  Tone.Transport.setTimeline(function(time){ player.start(time); }, "0:0:0");
+  Tone.Transport.setTimeline(function(time){ player.stop(time); }, bars-2 + ":3:0"); // Make sure it is stopped right before you start it again
+  player.toMaster();
+  player.setVolume(object.volume);
+}
+
 function disposePlayers() {
   for (var i = 0; i < numberOfPlayers; i++) {
     players[i].player.dispose();
@@ -205,7 +201,6 @@ function changeTempo(tempo){
   disposePlayers(); // Dispose of old players
   var playerName;
   for (var i = 0; i < numberOfPlayers; i++) {
-    //playerName = players[i].playerDetails.name; TODO: Remove
     switch (tempo) {
       case 100:
         players[i].player = new Tone.Player(players[i].playerDetails.url_100); // Creates new player object for each beat and lead
@@ -217,51 +212,3 @@ function changeTempo(tempo){
     setPlayers(players[i].playerDetails, players[i].player); // Sets timeline, connects to master, sets volume
   }
 }
-
-// BPM Selector
-$('[data-bpm]').change(function () {
-  // Stop everything that is playing
-  Tone.Transport.stop();
-  stopAllPlayers();
-
-   // Update current BPM to selected value
-  $('[data-bpm] option:selected').each(function() { currentBPM = $(this).text(); });
-  Tone.Transport.setBpm(currentBPM);;
-  Tone.Transport.setTransportTime("0:0:0");   // Set transport time back to 0:0:0
-
-  switch (+currentBPM) {
-    case 100:
-      changeTempo(100);
-      break;
-    case 120:
-      changeTempo(120);
-      break; 
-  }
-
-  setTimeout(function() { if (startScreen != true) { Tone.Transport.start(); }}, 500);
-
-}).change();
-
-$('[data-update-bpm]').click(function(){ Tone.Transport.start(); })   // Start transport again
-
-
-/* GUI */
-
-// Toolbar
-$('[data-record]').click(function() { record(); });               // Record
-$('[data-stop]').click(function() { stopRecording(); });                   // Stop
-$('[data-play]').click(function() { play(); });                   // Stop
-$('[data-click]').click(function() { toggleMetronome(); });       // Toggle metronome
-
-// Beats
-$('[data-beat-one]').click(function() { togglePlayer(beatOne, "beats"); });
-$('[data-beat-two]').click(function() { togglePlayer(beatTwo, "beats"); });
-
-// Leads
-$('[data-lead-one]').click(function() { togglePlayer(leadOne, "leads"); });
-$('[data-lead-two]').click(function() { togglePlayer(leadTwo, "leads"); });
-
-// Pad
-$('[data-kick]').click(function()  { playKick(); });              // Play Kick
-$('[data-snare]').click(function()  { playSnare(); });            // Play Snare
-$('[data-hat]').click(function()  { playHat(); });            // Play Snare
