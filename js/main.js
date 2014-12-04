@@ -13,17 +13,19 @@ Tone.Transport.setInterval(function(){
 
 // Samples
 var audioDirectory            = "audio/";
-var numberOfSamples           = 3;
 
 // Settings
 var defaultBPM                = 120;
 var currentBPM                = defaultBPM;
-var bars = 16;
+var bars                      = 16;
 
 Tone.Transport.setBpm(currentBPM);
 Tone.Transport.setLoopStart(0);
-Tone.Transport.setLoopEnd(bars-1 + ":0:0"); // Subtract 1 to count 0:0:0 as one bar
+Tone.Transport.setLoopEnd(bars-1 + ":0:0");
 Tone.Transport.loop = true;
+
+// Recording
+var isRecording               = false;
 
 // Progress Bar
 var currentProgress           = 0;
@@ -211,4 +213,205 @@ function changeTempo(tempo){
     }
     setPlayers(players[i].playerDetails, players[i].player); // Sets timeline, connects to master, sets volume
   }
+}
+
+function stopEverything() {
+  Tone.Transport.stop();
+  stopAllPlayers();
+}
+
+var numberOfSamples = 3;
+
+// Sampler/Pad
+var kick = {
+  "selector" : "[data-kick]",
+  "name" : "kick",
+  "path" : audioDirectory + "kick.mp3",
+  "score" : []
+};
+
+var snare = {
+  "selector" : "[data-snare]",
+  "name" : "snare",
+  "path" : audioDirectory + "snare.mp3",
+  "score" : []
+};
+
+var hat = {
+  "selector" : "[data-hat]",
+  "name" : "hi-hat",
+  "path" : audioDirectory + "hat.mp3",
+  "score" : []
+};
+
+var sampler = new Tone.MultiSampler({
+   "kick" : kick.path,
+   "snare" : snare.path,
+   "hi-hat" : hat.path
+});
+sampler.toMaster();
+
+var samples = [kick, snare, hat]
+
+function resetScores() {
+  for (var i = 0; i < numberOfSamples; i++) {
+    samples[i].score = [];
+  }
+}
+
+function playSample(keyPress, object) {
+  if (keyPress == 'down') {
+   sampler.triggerAttack(object.name);
+   $(object.selector).addClass('btn-enabled');
+
+    if (isRecording == true) {
+    // if (snareScore.indexOf(Tone.Transport.getTransportTime()) == -1) {  What does this do?
+      object.score.push(Tone.Transport.getTransportTime());
+      console.log(object.score);
+    }
+  } else if (keyPress == 'up') {
+    $(object.selector).removeClass('btn-enabled'); 
+  }
+}
+
+// Key presses down
+$(window).keydown(function(e) {
+  var key = e.which;
+  switch (key) {
+    case 49:
+      playSample('down', kick);
+      break;
+    case 50:
+      playSample('down', snare);
+      break;
+    case 51:
+      playSample('down', hat);
+      break;
+    case 52:
+      rim();
+      break;
+    case 53:
+      beatOne();
+      break;
+  }
+});
+
+// Key presses up
+$(window).keyup(function(e) {
+  var key = e.which;
+  switch (key) {
+    case 49:
+      playSample('up', kick);
+      break;
+    case 50:
+      playSample('up', snare);
+      break;
+    case 51:
+      playSample('up', hat);
+      break;
+    case 52:
+      rim();
+      break;
+    case 53:
+      beatOne();
+      break;
+  }
+});
+
+function record() {
+  if (!(isRecording == true)) {
+    stopEverything();
+    Tone.Transport.setTransportTime("0:0:0");
+
+    setTimeout(function() { if (startScreen != true) { recording(); }}, 500);
+  }
+  else {
+    stopRecording();
+  }
+}
+
+function recording() {
+  resetProgressBar();
+  resetScores();
+
+  Tone.Transport.start();
+
+  recordingInterval = Tone.Transport.setInterval(function() {
+    if (currentProgress == 0) {
+      isRecording = true;
+
+      $('[data-record-label]').text("Recording");
+    }
+
+    updateProgressBar((bars-1)*16);
+
+  },"0:0:1");
+}
+
+function stopRecording() {
+  isRecording = false;
+  stopEverything();
+  resetProgressBar()
+
+  $('[data-current-progress]').removeClass('recording');
+  $('[data-record-label]').text("Rec");
+
+  prepareScore();
+}
+
+function updateProgressBar(time) {
+  var totalLength = time;
+  var progressIncrement = 100/time;
+
+  // DEBUG
+  console.log("Time: " + Tone.Transport.getTransportTime());
+  console.log("Width: " + curentWidth);
+  console.log("Progress: " + currentProgress + "/" + totalLength);
+
+  if (currentProgress < totalLength-1) {
+    curentWidth += progressIncrement;
+    $('[data-current-progress]').css({"width": curentWidth + "%"  });
+  }
+
+  else {
+    curentWidth = 0;
+    currentProgress = 0;
+    $('[data-current-progress]').css({"width": curentWidth + "%"  });
+
+    if (isRecording == true) {
+     stopRecording();
+    }
+  }
+
+  currentProgress++;
+
+}
+
+function resetProgressBar() {
+  currentProgress = 0;
+  curentWidth = 0;
+  $('[data-current-progress]').css({"width": curentWidth + "%"  });
+}
+
+function play() {
+  Tone.Transport.setTransportTime(0);
+  var score = {
+    "kick" : kickScore,
+    "snare" : snareScore,
+    "hat" : hatScore
+  }
+
+  finalScore = Tone.Note.parseScore(score);
+
+  Tone.Note.route("kick", function(time) {
+    channels[0].triggerAttack(0, time);
+  });
+
+  Tone.Note.route("snare", function(time) {
+    channels[1].triggerAttack(0, time);
+  });
+
+  Tone.Note.route("hat", function(time) {
+    channels[2].triggerAttack(0, time);
+  });
 }

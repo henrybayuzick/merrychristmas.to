@@ -31,13 +31,11 @@ $('[data-click]').click(function() { toggleMetronome(); });       // Toggle metr
 
 // BPM Selector
 $('[data-bpm]').change(function () {
-  // Stop everything that is playing
-  Tone.Transport.stop();
-  stopAllPlayers();
+  stopEverything();
 
    // Update current BPM to selected value
   $('[data-bpm] option:selected').each(function() { currentBPM = $(this).text(); });
-  Tone.Transport.setBpm(currentBPM);;
+  Tone.Transport.setBpm(currentBPM);
   Tone.Transport.setTransportTime("0:0:0");   // Set transport time back to 0:0:0
 
   switch (+currentBPM) {
