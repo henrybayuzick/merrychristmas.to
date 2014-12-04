@@ -8,7 +8,7 @@ Tone.Transport.setInterval(function(){
 
 Tone.Transport.setInterval(function(){
   console.log("Transport time: "+Tone.Transport.getTransportTime());
-},"0:1:0")
+},"0:0:1")
 // End debug
 
 // Samples
@@ -92,7 +92,9 @@ var beatOne = {
   "url_120" : audioDirectory + "beat_nutcracker_120.mp3",
   "volume" : -200,
   "player" : beatOnePlayer,
-  "toggled" : false
+  "toggled" : false,
+  "on_score" : [],
+  "off_score" : []
 }
 
 var beatTwoPlayer = new Tone.Player();
@@ -103,7 +105,9 @@ var beatTwo = {
   "url_120" : audioDirectory + "beat_jingle_120.mp3",
   "volume" : -200,
   "player" : beatTwoPlayer,
-  "toggled" : false
+  "toggled" : false,
+  "on_score" : [],
+  "off_score" : []
 }
 
 // Leads
@@ -115,7 +119,9 @@ var leadOne = {
   "url_120" : audioDirectory + "lead_nutcracker_120.mp3",
   "volume" : -200,
   "player" : leadOnePlayer,
-  "toggled" : false
+  "toggled" : false,
+  "on_score" : [],
+  "off_score" : []
 }
 
 var leadTwoPlayer = new Tone.Player();
@@ -126,7 +132,9 @@ var leadTwo = {
   "url_120" : audioDirectory + "lead_jingle_120.mp3",
   "volume" : -200,
   "player" : leadTwoPlayer,
-  "toggled" : false
+  "toggled" : false,
+  "on_score" : [],
+  "off_score" : []
 }
 
 // Players
@@ -170,12 +178,23 @@ function togglePlayer(object, toggle) {
     object.volume = -10;
     $(object.selector).addClass('btn-enabled');
     object.toggled = true;
+
+    if (isRecording == true) {
+      object.on_score.push(Tone.Transport.getTransportTime());
+      console.log(object.on_score);
+    }
   }
   else {
     object.player.setVolume(-200);
     object.volume = -200;
     $(object.selector).removeClass('btn-enabled');
     object.toggled = false;
+
+    if (isRecording == true) {
+      object.off_score.push(Tone.Transport.getTransportTime());
+      console.log(object.off_score);
+    }
+
   }
 }
 
@@ -257,6 +276,10 @@ function resetScores() {
   for (var i = 0; i < numberOfSamples; i++) {
     samples[i].score = [];
   }
+  for (var i = 0; i < numberOfPlayers; i++) {
+    players[i].playerDetails.on_score = [];
+    players[i].playerDetails.off_score = [];
+  }
 }
 
 function playSample(keyPress, object) {
@@ -265,7 +288,6 @@ function playSample(keyPress, object) {
    $(object.selector).addClass('btn-enabled');
 
     if (isRecording == true) {
-    // if (snareScore.indexOf(Tone.Transport.getTransportTime()) == -1) {  What does this do?
       object.score.push(Tone.Transport.getTransportTime());
       console.log(object.score);
     }
@@ -318,8 +340,17 @@ $(window).keyup(function(e) {
   }
 });
 
+function makePlayerScores() {
+  for (var i = 0; i < numberOfPlayers; i++) {
+    if (players[i].playerDetails.toggled == true) {
+      players[i].playerDetails.on_score.push(Tone.Transport.getTransportTime());
+      console.log(players[i].playerDetails.on_score);
+    }
+  }
+}
+
 function record() {
-  if (!(isRecording == true)) {
+  if (isRecording != true) {
     stopEverything();
     Tone.Transport.setTransportTime("0:0:0");
 
@@ -330,9 +361,11 @@ function record() {
   }
 }
 
+var recordingInterval = 0;
 function recording() {
   resetProgressBar();
   resetScores();
+  makePlayerScores()
 
   Tone.Transport.start();
 
@@ -352,6 +385,8 @@ function stopRecording() {
   isRecording = false;
   stopEverything();
   resetProgressBar()
+
+  Tone.Transport.clearInterval(recordingInterval);
 
   $('[data-current-progress]').removeClass('recording');
   $('[data-record-label]').text("Rec");
@@ -393,25 +428,63 @@ function resetProgressBar() {
   $('[data-current-progress]').css({"width": curentWidth + "%"  });
 }
 
-function play() {
-  Tone.Transport.setTransportTime(0);
-  var score = {
-    "kick" : kickScore,
-    "snare" : snareScore,
-    "hat" : hatScore
+function prepareScore() {
+  //Tone.Transport.clearTimelines();
+
+
+  
+  for (var i = 0; i < numberOfPlayers; i++) {
+    for (var x = 0; x < players[i].playerDetails.on_score.length; x++) {
+    }
+    for (var x = 0; x < players[i].playerDetails.off_score.length; x++) {
+      console.log(players[i].playerDetails.off_score[x]+'');
+      Tone.Transport.setTimeline(function(time2) {
+        alert('test10');
+      }, players[i].playerDetails.off_score[x]+'');
+    }
   }
 
-  finalScore = Tone.Note.parseScore(score);
 
-  Tone.Note.route("kick", function(time) {
-    channels[0].triggerAttack(0, time);
-  });
+  Tone.Transport.setTimeline(function(time){
+    console.log('test2');
+  }, "1:0:0");
 
-  Tone.Note.route("snare", function(time) {
-    channels[1].triggerAttack(0, time);
-  });
+  //   Tone.Transport.setTimeline(function(time){
+  //   console.log('test3');
+  // }, "1:3:0");
 
-  Tone.Note.route("hat", function(time) {
-    channels[2].triggerAttack(0, time);
-  });
+        Tone.Transport.setTimeline(function(time){
+    console.log('test15');
+  }, "4:0:0");
+
+
+  
+
+
+  //   var score = {
+  //   "kick" : kick.score,
+  //   "snare" : snare.score,
+  //   "hat" : hat.score
+  // };
+
+  // finalScore = Tone.Note.parseScore(score);
+}
+
+function play() {
+  
+  Tone.Transport.setTransportTime("0:0:0");
+
+  Tone.Transport.start();
+
+  // Tone.Note.route("kick", function(time) {
+  //   channels[0].triggerAttack(0, time);
+  // });
+
+  // Tone.Note.route("snare", function(time) {
+  //   channels[1].triggerAttack(0, time);
+  // });
+
+  // Tone.Note.route("hat", function(time) {
+  //   channels[2].triggerAttack(0, time);
+  // });
 }
