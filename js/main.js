@@ -94,7 +94,7 @@ var beatOne = {
   "player" : beatOnePlayer,
   "toggled" : false,
   "on_score" : [],
-  "off_score" : []
+  "off_score" : ["2:0:0","3:0:0", "5:0:0"]
 }
 
 var beatTwoPlayer = new Tone.Player();
@@ -194,7 +194,6 @@ function togglePlayer(object, toggle) {
       object.off_score.push(Tone.Transport.getTransportTime());
       console.log(object.off_score);
     }
-
   }
 }
 
@@ -428,37 +427,42 @@ function resetProgressBar() {
   $('[data-current-progress]').css({"width": curentWidth + "%"  });
 }
 
+
+
+function setPlayerTimelines (object) {
+  // Put all the players back on the timeline
+  Tone.Transport.setTimeline(function(time){ object.player.start(time); }, "0:0:0");
+  Tone.Transport.setTimeline(function(time){ object.player.stop(time); }, bars-2 + ":3:0"); // Make sure it is stopped right before you start it again
+
+  // Set timeline events for their volume
+
+  // Set on events
+  for (var i = 0; i < object.playerDetails.on_score.length; i++) {
+    Tone.Transport.setTimeline(function() {
+      console.log(object.playerDetails.name + 'volume up');
+      object.playerDetails.volume=-10;
+      object.player.setVolume(-10);
+    }, object.playerDetails.on_score[i]);
+  }
+
+  // Set off events
+  for (var i = 0; i < object.playerDetails.off_score.length; i++) {
+    Tone.Transport.setTimeline(function() {
+      console.log(object.playerDetails.name + 'volume down');
+      object.playerDetails.volume=-200;
+      object.player.setVolume(-200);
+    }, object.playerDetails.off_score[i]);
+  } 
+}
+
 function prepareScore() {
-  //Tone.Transport.clearTimelines();
+  Tone.Transport.clearTimelines(); // Clear timeline
 
 
   
   for (var i = 0; i < numberOfPlayers; i++) {
-    for (var x = 0; x < players[i].playerDetails.on_score.length; x++) {
-    }
-    for (var x = 0; x < players[i].playerDetails.off_score.length; x++) {
-      console.log(players[i].playerDetails.off_score[x]+'');
-      Tone.Transport.setTimeline(function(time2) {
-        alert('test10');
-      }, players[i].playerDetails.off_score[x]+'');
-    }
+    setPlayerTimelines(players[i]);
   }
-
-
-  Tone.Transport.setTimeline(function(time){
-    console.log('test2');
-  }, "1:0:0");
-
-  //   Tone.Transport.setTimeline(function(time){
-  //   console.log('test3');
-  // }, "1:3:0");
-
-        Tone.Transport.setTimeline(function(time){
-    console.log('test15');
-  }, "4:0:0");
-
-
-  
 
 
   //   var score = {
