@@ -1,3 +1,4 @@
+
 // Start debug
 console.log("Transport: "+Tone.Transport.state);
 
@@ -12,7 +13,7 @@ Tone.Transport.setInterval(function(){
 // End debug
 
 // Samples
-var audioDirectory            = "audio/";
+var audioDirectory            = "/audio/";
 
 // Settings
 var defaultBPM                = 120;
@@ -469,6 +470,8 @@ function setPlayerTimelines (object) {
   } 
 }
 
+var allData = {};
+
 function prepareScore() {
   Tone.Transport.clearTimelines(); // Clear timeline
 
@@ -482,7 +485,22 @@ function prepareScore() {
     "hat" : hat.score
   };
 
-  finalScore = Tone.Note.parseScore(score);
+  allData = {
+    "players" : [
+      { "on_score" : players[0].playerDetails.on_score, "off_score" : players[0].playerDetails.off_score },
+      { "on_score" : players[1].playerDetails.on_score, "off_score" : players[1].playerDetails.off_score},
+      { "on_score" : players[2].playerDetails.on_score, "off_score" : players[2].playerDetails.off_score},
+      { "on_score" : players[3].playerDetails.on_score, "off_score" : players[3].playerDetails.off_score}
+    ],
+    "multiSampler" : samplerScore = {
+      "kick" : kick.score,
+      "snare" : snare.score,
+      "hat" : hat.score
+    },
+    "bpm" : currentBPM
+  };
+
+  Tone.Note.parseScore(score);
 
   Tone.Note.route("kick", function(time) {
     sampler.triggerAttack("kick");
@@ -498,10 +516,73 @@ function prepareScore() {
 }
 
 function play() {
-  
   Tone.Transport.setTransportTime("0:0:0");
-
-  Tone.Transport.start();
-
-  
+  Tone.Transport.start();  
 }
+
+
+function createCard() {
+  console.log('Creating card');
+
+  // Make sure timeline is clear and everything is stopped
+  Tone.Transport.clearTimelines();
+  stopEverything();
+
+  // Set BPM from data and make sure transport is at beginning
+  currentBPM = allCardData.bpm;
+  Tone.Transport.setBpm(currentBPM);
+  Tone.Transport.setTransportTime("0:0:0");   // Set transport time back to 0:0:0
+
+  // Set all the players at current BPM
+  changeTempo(+currentBPM);
+
+  // Set all player scores from data
+  for (var i = 0; i < numberOfPlayers; i++) {
+    players[i].playerDetails.on_score = allCardData.players[i].on_score;
+    players[i].playerDetails.off_score = allCardData.players[i].off_score;
+  }
+
+  // Set up all the player timelines
+  for (var i = 0; i < numberOfPlayers; i++) {
+    setPlayerTimelines(players[i]);
+  }
+
+  // Parse notes from data
+  Tone.Note.parseScore(allCardData.multiSampler);
+
+  // Route notes
+  Tone.Note.route("kick", function(time) {
+    sampler.triggerAttack("kick");
+  });
+
+  Tone.Note.route("snare", function(time) {
+    sampler.triggerAttack("snare");
+  });
+
+  Tone.Note.route("hat", function(time) {
+    sampler.triggerAttack("hi-hat");
+  });
+
+  setTimeout(function() { play(); }, 500); 
+
+}
+
+// If playback page
+card = {
+  "cardID" : $('[data-card-id]').data('value'),
+}
+
+var allScores = {}
+function fetchData() {
+  $.ajax({
+    type: 'POST',
+    url: "/show.php",
+    data: card,
+    success: function(data) {
+      allCardData = JSON.parse(data)
+      createCard();
+    }
+  });
+}
+
+fetchData();

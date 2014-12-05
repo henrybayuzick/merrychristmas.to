@@ -10,19 +10,16 @@ $('[data-get-started]').click(function(){
 	startScreen =false;
 });
 
-finalScore = {
-  "some-data" : "more data",
-}
-
-var finalFinalScore = {
- "cardData" : finalScore,
-}
 
 function submitData() {
+  var finalScore = {
+    "cardData" : allData,
+  }
+
   $.ajax({
     type: 'post',
     url: "/build.php",
-    data: finalFinalScore,
+    data: finalScore,
     success: function(data) {
       alert(data);
     }
