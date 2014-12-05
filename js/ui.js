@@ -10,6 +10,25 @@ $('[data-get-started]').click(function(){
 	startScreen =false;
 });
 
+finalScore = {
+  "some-data" : "more data",
+}
+
+var finalFinalScore = {
+ "cardData" : finalScore,
+}
+
+function submitData() {
+  $.ajax({
+    type: 'post',
+    url: "/build.php",
+    data: finalFinalScore,
+    success: function(data) {
+      alert(data);
+    }
+  });
+}
+
 // Beats
 $('[data-beat-one]').click(function() { togglePlayer(beatOne, "beats"); });
 $('[data-beat-two]').click(function() { togglePlayer(beatTwo, "beats"); });
@@ -28,6 +47,7 @@ $('[data-record]').click(function() { record(); });               // Record
 $('[data-stop]').click(function() { stopRecording(); });          // Stop
 $('[data-play]').click(function() { play(); });                   // Stop
 $('[data-click]').click(function() { toggleMetronome(); });       // Toggle metronome
+$('[data-submit-data]').click(function() { submitData(); });
 
 // BPM Selector
 $('[data-bpm]').change(function () {

@@ -149,30 +149,44 @@ players = [
   { "playerDetails" : leadTwo, "player": leadTwoPlayer },
 ]
 
-function toggleOffBeats() {
+function toggleOffBeats(object) {
     for (var i = 0; i < numberOfBeats; i++) {
-      $(players[i].playerDetails.selector).removeClass('btn-enabled');
-      players[i].playerDetails.toggled = false;
-      players[i].player.setVolume(-200);
-      players[i].playerDetails.volume = -200;
+      if (players[i].playerDetails != object) { 
+        $(players[i].playerDetails.selector).removeClass('btn-enabled');
+        players[i].playerDetails.toggled = false;
+        players[i].player.setVolume(-200);
+        players[i].playerDetails.volume = -200;
+
+        if (isRecording == true) {
+          players[i].playerDetails.off_score.push(Tone.Transport.getTransportTime());
+          console.log(players[i].playerDetails.off_score);
+        }
+      }
     }
 }
 
-function toggleOffLeads() {
+function toggleOffLeads(object) {
     for (var i = numberOfBeats; i < numberOfPlayers; i++) {
-      $(players[i].playerDetails.selector).removeClass('btn-enabled');
-      players[i].playerDetails.toggled = false;
-      players[i].player.setVolume(-200);
-      players[i].playerDetails.volume = -200;
+      if (players[i].playerDetails != object) { 
+        $(players[i].playerDetails.selector).removeClass('btn-enabled');
+        players[i].playerDetails.toggled = false;
+        players[i].player.setVolume(-200);
+        players[i].playerDetails.volume = -200;
+
+        if (isRecording == true) {
+          players[i].playerDetails.off_score.push(Tone.Transport.getTransportTime());
+          console.log(players[i].playerDetails.off_score);
+        }
+      }
     }
 }
 
 function togglePlayer(object, toggle) {
   if (object.toggled != true) {
     if (toggle == "beats") {
-      toggleOffBeats();
+      toggleOffBeats(object);
     } else if (toggle == "leads") {
-      toggleOffLeads();
+      toggleOffLeads(object);
     }
     object.player.setVolume(-10);
     object.volume = -10;
@@ -244,7 +258,7 @@ var numberOfSamples = 3;
 var kick = {
   "selector" : "[data-kick]",
   "name" : "kick",
-  "path" : audioDirectory + "kick.mp3",
+  "path" : audioDirectory + "kick.wav",
   "score" : []
 };
 
@@ -458,20 +472,29 @@ function setPlayerTimelines (object) {
 function prepareScore() {
   Tone.Transport.clearTimelines(); // Clear timeline
 
-
-  
   for (var i = 0; i < numberOfPlayers; i++) {
     setPlayerTimelines(players[i]);
   }
 
+  var score = {
+    "kick" : kick.score,
+    "snare" : snare.score,
+    "hat" : hat.score
+  };
 
-  //   var score = {
-  //   "kick" : kick.score,
-  //   "snare" : snare.score,
-  //   "hat" : hat.score
-  // };
+  finalScore = Tone.Note.parseScore(score);
 
-  // finalScore = Tone.Note.parseScore(score);
+  Tone.Note.route("kick", function(time) {
+    sampler.triggerAttack("kick");
+  });
+
+  Tone.Note.route("snare", function(time) {
+    sampler.triggerAttack("snare");
+  });
+
+  Tone.Note.route("hat", function(time) {
+    sampler.triggerAttack("hi-hat");
+  });
 }
 
 function play() {
@@ -480,15 +503,5 @@ function play() {
 
   Tone.Transport.start();
 
-  // Tone.Note.route("kick", function(time) {
-  //   channels[0].triggerAttack(0, time);
-  // });
-
-  // Tone.Note.route("snare", function(time) {
-  //   channels[1].triggerAttack(0, time);
-  // });
-
-  // Tone.Note.route("hat", function(time) {
-  //   channels[2].triggerAttack(0, time);
-  // });
+  
 }
