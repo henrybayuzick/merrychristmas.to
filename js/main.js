@@ -36,8 +36,8 @@ var curentWidth               = 0;
 var metronomeState = "off";
 
 var metronome = new Tone.MultiSampler({
-  "high" : audioDirectory + "logic1.wav",
-  "low" : audioDirectory + "logic2.wav"
+  "high" : audioDirectory + "/metronome/logic1.wav",
+  "low" : audioDirectory + "/metronome/logic2.wav"
 });
 
 metronome.toMaster();
@@ -88,24 +88,58 @@ function toggleMetronome() {
 var beatOnePlayer = new Tone.Player();
 var beatOne = {
   "selector" : '[data-beat-one]',
-  "name" : "Rap beat",
-  "url_100" : audioDirectory + "beat_nutcracker_100.mp3",
-  "url_120" : audioDirectory + "beat_nutcracker_120.mp3",
+  "name" : "The Nutcracker",
+  "url_100" : audioDirectory + "/beats/100/the-nutcracker.mp3",
+  "url_120" : audioDirectory + "/beats/120/the-nutcracker.mp3",
+  "url_140" : audioDirectory + "/beats/140/the-nutcracker.mp3",
+  "url_160" : audioDirectory + "/beats/160/the-nutcracker.mp3",
   "volume" : -200,
   "player" : beatOnePlayer,
   "toggled" : false,
   "on_score" : [],
-  "off_score" : ["2:0:0","3:0:0", "5:0:0"]
+  "off_score" : []
 }
 
 var beatTwoPlayer = new Tone.Player();
 var beatTwo = {
   "selector" : '[data-beat-two]',
-  "name" : "Rock beat",
-  "url_100" : audioDirectory + "beat_jingle_100.mp3",
-  "url_120" : audioDirectory + "beat_jingle_120.mp3",
+  "name" : "Jingle Bells",
+  "url_100" : audioDirectory + "/beats/100/jingle-bells.mp3",
+  "url_120" : audioDirectory + "/beats/120/jingle-bells.mp3",
+  "url_140" : audioDirectory + "/beats/140/jingle-bells.mp3",
+  "url_160" : audioDirectory + "/beats/160/jingle-bells.mp3",
   "volume" : -200,
   "player" : beatTwoPlayer,
+  "toggled" : false,
+  "on_score" : [],
+  "off_score" : []
+}
+
+var beatThreePlayer = new Tone.Player();
+var beatThree = {
+  "selector" : '[data-beat-three]',
+  "name" : "Jingle Bell Rock",
+  "url_100" : audioDirectory + "/beats/100/jingle-bell-rock.mp3",
+  "url_120" : audioDirectory + "/beats/120/jingle-bell-rock.mp3",
+  "url_140" : audioDirectory + "/beats/140/jingle-bell-rock.mp3",
+  "url_160" : audioDirectory + "/beats/160/jingle-bell-rock.mp3",
+  "volume" : -200,
+  "player" : beatThreePlayer,
+  "toggled" : false,
+  "on_score" : [],
+  "off_score" : []
+}
+
+var beatFourPlayer = new Tone.Player();
+var beatFour = {
+  "selector" : '[data-beat-four]',
+  "name" : "Sleigh Ride",
+  "url_100" : audioDirectory + "/beats/100/sleigh-ride.mp3",
+  "url_120" : audioDirectory + "/beats/120/sleigh-ride.mp3",
+  "url_140" : audioDirectory + "/beats/140/sleigh-ride.mp3",
+  "url_160" : audioDirectory + "/beats/160/sleigh-ride.mp3",
+  "volume" : -200,
+  "player" : beatFourPlayer,
   "toggled" : false,
   "on_score" : [],
   "off_score" : []
@@ -115,9 +149,11 @@ var beatTwo = {
 var leadOnePlayer = new Tone.Player();
 var leadOne = {
   "selector" : '[data-lead-one]',
-  "name" : "Rap lead",
-  "url_100" : audioDirectory + "lead_nutcracker_100.mp3",
-  "url_120" : audioDirectory + "lead_nutcracker_120.mp3",
+  "name" : "The Nutcracker",
+  "url_100" : audioDirectory + "/leads/100/the-nutcracker.mp3",
+  "url_120" : audioDirectory + "/leads/120/the-nutcracker.mp3",
+  "url_140" : audioDirectory + "/leads/140/the-nutcracker.mp3",
+  "url_160" : audioDirectory + "/leads/160/the-nutcracker.mp3",
   "volume" : -200,
   "player" : leadOnePlayer,
   "toggled" : false,
@@ -128,9 +164,11 @@ var leadOne = {
 var leadTwoPlayer = new Tone.Player();
 var leadTwo = {
   "selector" : '[data-lead-two]',
-  "name" : "Rock lead",
-  "url_100" : audioDirectory + "lead_jingle_100.mp3",
-  "url_120" : audioDirectory + "lead_jingle_120.mp3",
+  "name" : "Jingle Bells",
+  "url_100" : audioDirectory + "/leads/100/jingle-bells.mp3",
+  "url_120" : audioDirectory + "/leads/120/jingle-bells.mp3",
+  "url_140" : audioDirectory + "/leads/140/jingle-bells.mp3",
+  "url_160" : audioDirectory + "/leads/160/jingle-bells.mp3",
   "volume" : -200,
   "player" : leadTwoPlayer,
   "toggled" : false,
@@ -138,48 +176,84 @@ var leadTwo = {
   "off_score" : []
 }
 
+var leadThreePlayer = new Tone.Player();
+var leadThree = {
+  "selector" : '[data-lead-three]',
+  "name" : "Jingle Bell Rock",
+  "url_100" : audioDirectory + "/leads/100/jingle-bell-rock.mp3",
+  "url_120" : audioDirectory + "/leads/120/jingle-bell-rock.mp3",
+  "url_140" : audioDirectory + "/leads/140/jingle-bell-rock.mp3",
+  "url_160" : audioDirectory + "/leads/160/jingle-bell-rock.mp3",
+  "volume" : -200,
+  "player" : leadThreePlayer,
+  "toggled" : false,
+  "on_score" : [],
+  "off_score" : []
+}
+
+var leadFourPlayer = new Tone.Player();
+var leadFour = {
+  "selector" : '[data-lead-four]',
+  "name" : "Sleigh Ride",
+  "url_100" : audioDirectory + "/leads/100/sleigh-ride.mp3",
+  "url_120" : audioDirectory + "/leads/120/sleigh-ride.mp3",
+  "url_140" : audioDirectory + "/leads/140/sleigh-ride.mp3",
+  "url_160" : audioDirectory + "/leads/160/sleigh-ride.mp3",
+  "volume" : -200,
+  "player" : leadFourPlayer,
+  "toggled" : false,
+  "on_score" : [],
+  "off_score" : []
+}
+
+
 // Players
-var numberOfBeats = 2;
-var numberOfLeads = 2;
+var numberOfBeats = 4;
+var numberOfLeads = 4;
 var numberOfPlayers = numberOfBeats + numberOfLeads;
 
 players = [
   { "playerDetails" : beatOne, "player": beatOnePlayer },
   { "playerDetails" : beatTwo, "player": beatTwoPlayer },
+  { "playerDetails" : beatThree, "player": beatThreePlayer },
+  { "playerDetails" : beatFour, "player": beatFourPlayer },
+
   { "playerDetails" : leadOne, "player": leadOnePlayer },
   { "playerDetails" : leadTwo, "player": leadTwoPlayer },
+  { "playerDetails" : leadThree, "player": leadThreePlayer },
+  { "playerDetails" : leadFour, "player": leadFourPlayer }
 ]
 
 function toggleOffBeats(object) {
-    for (var i = 0; i < numberOfBeats; i++) {
-      if (players[i].playerDetails != object) { 
-        $(players[i].playerDetails.selector).removeClass('btn-enabled');
-        players[i].playerDetails.toggled = false;
-        players[i].player.setVolume(-200);
-        players[i].playerDetails.volume = -200;
+  for (var i = 0; i < numberOfBeats; i++) {
+    if (players[i].playerDetails != object) { 
+      $(players[i].playerDetails.selector).removeClass('btn-enabled');
+      players[i].playerDetails.toggled = false;
+      players[i].player.setVolume(-200);
+      players[i].playerDetails.volume = -200;
 
-        if (isRecording == true) {
-          players[i].playerDetails.off_score.push(Tone.Transport.getTransportTime());
-          console.log(players[i].playerDetails.off_score);
-        }
+      if (isRecording == true) {
+        players[i].playerDetails.off_score.push(Tone.Transport.getTransportTime());
+        console.log(players[i].playerDetails.off_score);
       }
     }
+  }
 }
 
 function toggleOffLeads(object) {
-    for (var i = numberOfBeats; i < numberOfPlayers; i++) {
-      if (players[i].playerDetails != object) { 
-        $(players[i].playerDetails.selector).removeClass('btn-enabled');
-        players[i].playerDetails.toggled = false;
-        players[i].player.setVolume(-200);
-        players[i].playerDetails.volume = -200;
+  for (var i = numberOfBeats; i < numberOfPlayers; i++) {
+    if (players[i].playerDetails != object) { 
+      $(players[i].playerDetails.selector).removeClass('btn-enabled');
+      players[i].playerDetails.toggled = false;
+      players[i].player.setVolume(-200);
+      players[i].playerDetails.volume = -200;
 
-        if (isRecording == true) {
-          players[i].playerDetails.off_score.push(Tone.Transport.getTransportTime());
-          console.log(players[i].playerDetails.off_score);
-        }
+      if (isRecording == true) {
+        players[i].playerDetails.off_score.push(Tone.Transport.getTransportTime());
+        console.log(players[i].playerDetails.off_score);
       }
     }
+  }
 }
 
 function togglePlayer(object, toggle) {
@@ -235,13 +309,43 @@ function stopAllPlayers() {
 function changeTempo(tempo){
   disposePlayers(); // Dispose of old players
   var playerName;
+  var numberLoaded = 0;
   for (var i = 0; i < numberOfPlayers; i++) {
     switch (tempo) {
       case 100:
-        players[i].player = new Tone.Player(players[i].playerDetails.url_100); // Creates new player object for each beat and lead
+        players[i].player = new Tone.Player(players[i].playerDetails.url_100, function() {
+          numberLoaded++;
+          console.log(numberLoaded + "/8 loaded")
+          if (numberLoaded == 8) {
+             Tone.Transport.start();
+          }
+        });
         break;
       case 120:
-        players[i].player = new Tone.Player(players[i].playerDetails.url_120); // Creates new player object for each beat and lead
+        players[i].player = new Tone.Player(players[i].playerDetails.url_120, function() {
+          numberLoaded++;
+          if (numberLoaded == 8) {
+            if (startScreen != true) {
+              Tone.Transport.start();
+            }
+          }
+        });
+        break;
+      case 140:
+        players[i].player = new Tone.Player(players[i].playerDetails.url_140, function() {
+          numberLoaded++;
+          if (numberLoaded == 8) {
+             Tone.Transport.start();
+          }
+        });
+        break;
+      case 160:
+        players[i].player = new Tone.Player(players[i].playerDetails.url_160, function() {
+          numberLoaded++;
+          if (numberLoaded == 8) {
+             Tone.Transport.start();
+          }
+        });
         break;
     }
     setPlayers(players[i].playerDetails, players[i].player); // Sets timeline, connects to master, sets volume
@@ -256,35 +360,35 @@ function stopEverything() {
 var numberOfSamples = 3;
 
 // Sampler/Pad
-var kick = {
-  "selector" : "[data-kick]",
+var sampleOne = {
+  "selector" : "[data-sample-one]",
   "name" : "kick",
   "path" : audioDirectory + "kick.wav",
   "score" : []
 };
 
-var snare = {
-  "selector" : "[data-snare]",
+var sampleTwo = {
+  "selector" : "[data-sample-two]",
   "name" : "snare",
   "path" : audioDirectory + "snare.mp3",
   "score" : []
 };
 
-var hat = {
-  "selector" : "[data-hat]",
+var sampleThree = {
+  "selector" : "[data-sample-three]",
   "name" : "hi-hat",
   "path" : audioDirectory + "hat.mp3",
   "score" : []
 };
 
 var sampler = new Tone.MultiSampler({
-   "kick" : kick.path,
-   "snare" : snare.path,
-   "hi-hat" : hat.path
+   "kick" : sampleOne.path,
+   "snare" : sampleTwo.path,
+   "hi-hat" : sampleThree.path
 });
 sampler.toMaster();
 
-var samples = [kick, snare, hat]
+var samples = [sampleOne, sampleTwo, sampleThree]
 
 function resetScores() {
   for (var i = 0; i < numberOfSamples; i++) {
@@ -307,6 +411,8 @@ function playSample(keyPress, object) {
     }
   } else if (keyPress == 'up') {
     $(object.selector).removeClass('btn-enabled'); 
+  } else if (keyPress == 'none') {
+    sampler.triggerAttack(object.name);
   }
 }
 
@@ -315,19 +421,19 @@ $(window).keydown(function(e) {
   var key = e.which;
   switch (key) {
     case 49:
-      playSample('down', kick);
+      playSample('down', sampleOne);
       break;
     case 50:
-      playSample('down', snare);
+      playSample('down', sampleTwo);
       break;
     case 51:
-      playSample('down', hat);
+      playSample('down', sampleThree);
       break;
     case 52:
-      rim();
+
       break;
     case 53:
-      beatOne();
+
       break;
   }
 });
@@ -337,19 +443,19 @@ $(window).keyup(function(e) {
   var key = e.which;
   switch (key) {
     case 49:
-      playSample('up', kick);
+      playSample('up', sampleOne);
       break;
     case 50:
-      playSample('up', snare);
+      playSample('up', sampleTwo);
       break;
     case 51:
-      playSample('up', hat);
+      playSample('up', sampleThree);
       break;
     case 52:
-      rim();
+
       break;
     case 53:
-      beatOne();
+
       break;
   }
 });
@@ -442,8 +548,6 @@ function resetProgressBar() {
   $('[data-current-progress]').css({"width": curentWidth + "%"  });
 }
 
-
-
 function setPlayerTimelines (object) {
   // Put all the players back on the timeline
   Tone.Transport.setTimeline(function(time){ object.player.start(time); }, "0:0:0");
@@ -479,110 +583,27 @@ function prepareScore() {
     setPlayerTimelines(players[i]);
   }
 
-  var score = {
-    "kick" : kick.score,
-    "snare" : snare.score,
-    "hat" : hat.score
-  };
-
   allData = {
     "players" : [
       { "on_score" : players[0].playerDetails.on_score, "off_score" : players[0].playerDetails.off_score },
-      { "on_score" : players[1].playerDetails.on_score, "off_score" : players[1].playerDetails.off_score},
-      { "on_score" : players[2].playerDetails.on_score, "off_score" : players[2].playerDetails.off_score},
-      { "on_score" : players[3].playerDetails.on_score, "off_score" : players[3].playerDetails.off_score}
+      { "on_score" : players[1].playerDetails.on_score, "off_score" : players[1].playerDetails.off_score },
+      { "on_score" : players[2].playerDetails.on_score, "off_score" : players[2].playerDetails.off_score },
+      { "on_score" : players[3].playerDetails.on_score, "off_score" : players[3].playerDetails.off_score },
+      { "on_score" : players[4].playerDetails.on_score, "off_score" : players[4].playerDetails.off_score },
+      { "on_score" : players[5].playerDetails.on_score, "off_score" : players[5].playerDetails.off_score },
+      { "on_score" : players[6].playerDetails.on_score, "off_score" : players[6].playerDetails.off_score },
+      { "on_score" : players[7].playerDetails.on_score, "off_score" : players[7].playerDetails.off_score }
     ],
     "multiSampler" : samplerScore = {
-      "kick" : kick.score,
-      "snare" : snare.score,
-      "hat" : hat.score
+      "kick" : sampleOne.score,
+      "snare" : sampleTwo.score,
+      "hat" : sampleThree.score
     },
     "bpm" : currentBPM
   };
-
-  Tone.Note.parseScore(score);
-
-  Tone.Note.route("kick", function(time) {
-    sampler.triggerAttack("kick");
-  });
-
-  Tone.Note.route("snare", function(time) {
-    sampler.triggerAttack("snare");
-  });
-
-  Tone.Note.route("hat", function(time) {
-    sampler.triggerAttack("hi-hat");
-  });
 }
 
 function play() {
   Tone.Transport.setTransportTime("0:0:0");
   Tone.Transport.start();  
 }
-
-
-function createCard() {
-  console.log('Creating card');
-
-  // Make sure timeline is clear and everything is stopped
-  Tone.Transport.clearTimelines();
-  stopEverything();
-
-  // Set BPM from data and make sure transport is at beginning
-  currentBPM = allCardData.bpm;
-  Tone.Transport.setBpm(currentBPM);
-  Tone.Transport.setTransportTime("0:0:0");   // Set transport time back to 0:0:0
-
-  // Set all the players at current BPM
-  changeTempo(+currentBPM);
-
-  // Set all player scores from data
-  for (var i = 0; i < numberOfPlayers; i++) {
-    players[i].playerDetails.on_score = allCardData.players[i].on_score;
-    players[i].playerDetails.off_score = allCardData.players[i].off_score;
-  }
-
-  // Set up all the player timelines
-  for (var i = 0; i < numberOfPlayers; i++) {
-    setPlayerTimelines(players[i]);
-  }
-
-  // Parse notes from data
-  Tone.Note.parseScore(allCardData.multiSampler);
-
-  // Route notes
-  Tone.Note.route("kick", function(time) {
-    sampler.triggerAttack("kick");
-  });
-
-  Tone.Note.route("snare", function(time) {
-    sampler.triggerAttack("snare");
-  });
-
-  Tone.Note.route("hat", function(time) {
-    sampler.triggerAttack("hi-hat");
-  });
-
-  setTimeout(function() { play(); }, 500); 
-
-}
-
-// If playback page
-card = {
-  "cardID" : $('[data-card-id]').data('value'),
-}
-
-var allScores = {}
-function fetchData() {
-  $.ajax({
-    type: 'POST',
-    url: "/show.php",
-    data: card,
-    success: function(data) {
-      allCardData = JSON.parse(data)
-      createCard();
-    }
-  });
-}
-
-fetchData();

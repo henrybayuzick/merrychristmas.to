@@ -10,7 +10,6 @@ $('[data-get-started]').click(function(){
 	startScreen =false;
 });
 
-
 function submitData() {
   var finalScore = {
     "cardData" : allData,
@@ -29,15 +28,19 @@ function submitData() {
 // Beats
 $('[data-beat-one]').click(function() { togglePlayer(beatOne, "beats"); });
 $('[data-beat-two]').click(function() { togglePlayer(beatTwo, "beats"); });
+$('[data-beat-three]').click(function() { togglePlayer(beatThree, "beats"); });
+$('[data-beat-four]').click(function() { togglePlayer(beatFour, "beats"); });
 
 // Leads
 $('[data-lead-one]').click(function() { togglePlayer(leadOne, "leads"); });
 $('[data-lead-two]').click(function() { togglePlayer(leadTwo, "leads"); });
+$('[data-lead-three]').click(function() { togglePlayer(leadThree, "leads"); });
+$('[data-lead-four]').click(function() { togglePlayer(leadFour, "leads"); });
 
 // Pad
-$('[data-kick]').click(function()  { playKick(); });              // Play Kick
-$('[data-snare]').click(function()  { playSnare(); });            // Play Snare
-$('[data-hat]').click(function()  { playHat(); });                // Play Snare
+$('[data-sample-one]').click(function()  { playSample('none', sampleOne); });                     // Play Airhorn
+$('[data-sample-two]').click(function()  { playSample('none', sampleTwo); });                     // Play Snare
+$('[data-sample-three]').click(function()  { playSample('none', sampleThree); });                // Play Snare
 
 // Toolbar
 $('[data-record]').click(function() { record(); });               // Record
@@ -62,8 +65,12 @@ $('[data-bpm]').change(function () {
     case 120:
       changeTempo(120);
       break; 
+    case 140:
+      changeTempo(140);
+      break; 
+    case 160:
+      changeTempo(160);
+      break; 
   }
-
-  setTimeout(function() { if (startScreen != true) { Tone.Transport.start(); }}, 500);
 
 }).change();

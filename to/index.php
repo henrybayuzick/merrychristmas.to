@@ -9,6 +9,6 @@
     	<script src="/js/vendor/Tone.min.js"></script>
     	<script src="/js/main.js"></script>
     	<script src="/js/ui.js"></script>
-    	<script src="/js/show.js"></script>
+    	<script src="/js/card.js"></script>
 	</body>
 </html>
