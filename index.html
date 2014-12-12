@@ -14,136 +14,127 @@
     </head>
     <body>
 
+    <div data-loading class="screen loading">
+        <div class="screen-content wrapper">
+            <img src="images/loader.gif">
+            <div data-loading-text>Images</div>
+        </div>
+    </div>
+
+    <header>
+        <div class="ornaments"></div>
+    </header>
+
     <section>
-        <div data-start-screen class="screen ">
+        <div data-start-screen class="screen start-screen hidden">
             <div class="screen-content wrapper">
-                    <h2>Build your own</h2>
-                    <h1>Christmas Card</h1>
+                <div class="logo"></div>
 
+                <p>This year, we’re putting the magic of Christmas back in your hands with The Merry Maker! Just choose the music, sound effects, visuals and holiday message you like, and then enter that special someone. Once they see yours, they can do it too! It’s a ho ho ho lot of fun!</p>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus id tristique dui. Donec libero nisl, placerat venenatis velit at, tempus hendrerit mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-
-                <button data-get-started>Get Started</button>
-                <button data-instructions class="btn-gray">Instructions</button>
+                <p><a data-get-started class="svg-button start"></a>
+                <a data-instructions class="svg-button how-to"></a></p>
             </div>
         </div>
     </section>
 
-    <section data-builder class="builder">
+    <div data-overlay class="overlay hidden"></div>
+    <div data-preview class="modal hidden">
+        <div data-preview-loader>
+            <img src="images/loader-white.gif">
+            <div data-preview-loading-text>Loading preview</div>
+        </div>
+        <div data-preview-content class="hidden">
+            <img src="images/soundboard/check-it-twice.svg" alt="Check it twice"><br/>
+            <p>Here's what your recording sounds like.<br/>
+            What do you think?</p>
+            <a data-restart class="svg-button restart"></a>
+            <a data-preview-next class="svg-button preview-next"></a>
+        </div>
+    </div>
+
+    <section data-builder class="builder hidden">
         <div class="wrapper">
-            <h3>Select a beat</h3>
+            <img src="images/soundboard/choose-a-beat.svg" alt="Choose a Beat">
             <div class="grid">
                 <div class="col-1-4">
-                    <a data-beat-one class="btn btn-full">Beat 1</a>
+                    <a data-beat-one class="svg-button wrap-beat"></a>
                 </div>
                 <div class="col-1-4">
-                    <a data-beat-two class="btn btn-full">Beat 2</a>
+                    <a data-beat-two class="svg-button slay-music"></a>
                 </div>
                 <div class="col-1-4">
-                    <a data-beat-three class="btn btn-full">Beat 3</a>
+                    <a data-beat-three class="svg-button indie-clause"></a>
                 </div>
                 <div class="col-1-4">
-                    <a data-beat-four class="btn btn-full">Beat 4</a>
+                    <a data-beat-four class="svg-button drumkitmas"></a>
                 </div>
             </div>
 
-            <h3>Select a lead</h3>
+            <img src="images/soundboard/choose-a-lead.svg" alt="Choose a Lead">
             <div class="grid">
                 <div class="col-1-4">
-                    <a data-lead-one class="btn btn-full">Lead 1</a>
+                    <a data-lead-one class="svg-button elves-2-men"></a>
                 </div>
                 <div class="col-1-4">
-                    <a data-lead-two class="btn btn-full">Lead 2</a>
+                    <a data-lead-two class="svg-button smells-like"></a>
                 </div>
                 <div class="col-1-4">
-                    <a data-lead-three class="btn btn-full">Lead 3</a>
+                    <a data-lead-three class="svg-button mr-tannen"></a>
                 </div>
                 <div class="col-1-4">
-                    <a data-lead-four class="btn btn-full">Lead 4</a>
+                    <a data-lead-four class="svg-button all-i-want"></a>
                 </div>
             </div>
 
-            <h3>Spice it up</h3>
+            <img src="images/soundboard/add-some-spice.svg" alt="Add Some Spice">
             <div class="grid">
                 <div class="col-1-4">
-                    <button data-sample-one class="btn btn-full btn-tall">
-                        Fog Horn<br/>
-                    </button>
+                    <a data-sample-one class="svg-button merry-christmas"></a>
                 </div>
                 <div class="col-1-4">
-                    <button data-sample-two class="btn btn-full btn-tall">
-                        Snare<br/>
-                    </button>
+                    <a data-sample-two class="svg-button bah-humbug"></a>
                 </div>
                 <div class="col-1-4">
-                    <button data-sample-three class="btn btn-full btn-tall">
-                        Hi-Hat<br/>
-                    </button>
+                    <a data-sample-three class="svg-button ho-ho-ho"></a>
                 </div>
                 <div class="col-1-4">
-                    <button data-sample-four class="btn btn-full btn-tall">
-                        Rim<br/>
-                        (4)
-                    </button>
+                    <a data-sample-four class="svg-button fa-la-la"></a>
                 </div>
             </div>
 
             <div class="grid">
                 <div class="col-1-4">
-                    <button data-sample-five class="btn btn-full btn-tall">
-                        Empty<br/>
-                        (5)
-                    </button>
+                    <a data-sample-five class="svg-button sleigh-bells"></a>
                 </div>
                 <div class="col-1-4">
-                    <button data-sample-six class="btn btn-full btn-tall">
-                        Empty<br/>
-                        (6)
-                    </button>
+                    <a data-sample-six class="svg-button fog-horn"></a>
                 </div>
                 <div class="col-1-4">
-                    <button data-sample-seven class="btn btn-full btn-tall">
-                        Empty<br/>
-                        (7)
-                    </button>
+                    <a data-sample-seven class="svg-button gun-shot"></a>
                 </div>
                 <div class="col-1-4">
-                    <button data-sample-eight class="btn btn-full btn-tall">
-                        Empty<br/>
-                        (8)
-                    </button>
+                    <a data-sample-eight class="svg-button youll-shoot"></a>
                 </div>
             </div>
 
             <div class="grid">
                 <div class="col-1-4">
-                    <button data-sample-nine class="btn btn-full btn-tall">
-                        Empty<br/>
-                        (9)
-                    </button>
+                    <a data-sample-nine class="svg-button santa-omg"></a>
                 </div>
                 <div class="col-1-4">
-                    <button data-sample-ten class="btn btn-full btn-tall">
-                        Empty<br/>
-                        (0)
-                    </button>
+                    <a data-sample-ten class="svg-button joy-to-the"></a>
                 </div>
                 <div class="col-1-4">
-                    <button data-sample-eleven class="btn btn-full btn-tall">
-                        Empty<br/>
-                        (-)
-                    </button>
+                    <a data-sample-eleven class="svg-button put-that-cookie"></a>
                 </div>
                 <div class="col-1-4">
-                    <button data-sample-twelve class="btn btn-full btn-tall">
-                        Empty<br/>
-                        (=)
-                    </button>
+                    <a data-sample-twelve class="svg-button merry-xmas-you"></a>
                 </div>
             </div>
         </div>
 
-        <div class="toolbar">
+        <div data-toolbar class="toolbar">
             <div class="progress-bar">
                 <div data-current-progress class="current-progress"></div>
             </div>
@@ -161,15 +152,49 @@
                         <option>140</option>
                         <option>160</option>
                     </select>
-                    <button data-click class="btn-small">Click</button>
 
+                    <button data-click class="btn-small">Click</button>
                     <button data-submit-data class="btn-small">Submit</button>
-                    
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="choose-bg">
+        Test
+    </section>
+
+    <div class="preload hidden">
+        <img src="images/ornaments.svg">
+        <img src="images/themerrymaker.svg">
+        <img src="images/start/start.svg">
+        <img src="images/start/start-hover.svg">
+        <img src="images/start/how-to.svg">
+        <img src="images/start/how-to-hover.svg">
+        <img src="images/soundboard/choose-a-beat.svg">
+        <img src="images/soundboard/choose-a-lead.svg">
+        <img src="images/soundboard/wrap-beat-hover.svg">
+        <img src="images/soundboard/slay-music-hover.svg">
+        <img src="images/soundboard/indie-clause-hover.svg">
+        <img src="images/soundboard/drumkitmas-hover.svg">
+        <img src="images/soundboard/elves-2-men-hover.svg">
+        <img src="images/soundboard/smells-like-hover.svg">
+        <img src="images/soundboard/mr-tannen-hover.svg">
+        <img src="images/soundboard/all-i-want-hover.svg">
+        <img src="images/soundboard/bah-humbug-hover.svg">
+        <img src="images/soundboard/put-that-cookie-hover.svg">
+        <img src="images/soundboard/merry-xmas-you-hover.svg">
+        <img src="images/soundboard/joy-to-the-hover.svg">
+        <img src="images/soundboard/sleigh-bells-hover.svg">
+        <img src="images/soundboard/fa-la-la-hover.svg">
+        <img src="images/soundboard/fog-horn-hover.svg">
+        <img src="images/soundboard/gun-shot-hover.svg">
+        <img src="images/soundboard/ho-ho-ho-hover.svg">
+        <img src="images/soundboard/merry-christmas-hover.svg">
+        <img src="images/soundboard/youll-shoot-hover.svg">
+        <img src="images/soundboard/santa-omg-hover.svg">
+        <img src="images/soundboard/next-hover.svg">
+    </div>
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/vendor/Tone.min.js"></script>

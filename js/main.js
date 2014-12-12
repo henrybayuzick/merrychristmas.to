@@ -32,12 +32,14 @@ var isRecording               = false;
 var currentProgress           = 0;
 var curentWidth               = 0;
 
+var cardPreview = false;
+
 // Metronome
 var metronomeState = "off";
 
 var metronome = new Tone.MultiSampler({
-  "high" : audioDirectory + "/metronome/logic1.wav",
-  "low" : audioDirectory + "/metronome/logic2.wav"
+  "high" : audioDirectory + "metronome/logic1.wav",
+  "low" : audioDirectory + "metronome/logic2.wav"
 });
 
 metronome.toMaster();
@@ -89,10 +91,10 @@ var beatOnePlayer = new Tone.Player();
 var beatOne = {
   "selector" : '[data-beat-one]',
   "name" : "The Nutcracker",
-  "url_100" : audioDirectory + "/beats/100/the-nutcracker.mp3",
-  "url_120" : audioDirectory + "/beats/120/the-nutcracker.mp3",
-  "url_140" : audioDirectory + "/beats/140/the-nutcracker.mp3",
-  "url_160" : audioDirectory + "/beats/160/the-nutcracker.mp3",
+  "url_100" : audioDirectory + "beats/100/the-nutcracker.mp3",
+  "url_120" : audioDirectory + "beats/120/the-nutcracker.mp3",
+  "url_140" : audioDirectory + "beats/140/the-nutcracker.mp3",
+  "url_160" : audioDirectory + "beats/160/the-nutcracker.mp3",
   "volume" : -200,
   "player" : beatOnePlayer,
   "toggled" : false,
@@ -104,10 +106,10 @@ var beatTwoPlayer = new Tone.Player();
 var beatTwo = {
   "selector" : '[data-beat-two]',
   "name" : "Jingle Bells",
-  "url_100" : audioDirectory + "/beats/100/jingle-bells.mp3",
-  "url_120" : audioDirectory + "/beats/120/jingle-bells.mp3",
-  "url_140" : audioDirectory + "/beats/140/jingle-bells.mp3",
-  "url_160" : audioDirectory + "/beats/160/jingle-bells.mp3",
+  "url_100" : audioDirectory + "beats/100/jingle-bells.mp3",
+  "url_120" : audioDirectory + "beats/120/jingle-bells.mp3",
+  "url_140" : audioDirectory + "beats/140/jingle-bells.mp3",
+  "url_160" : audioDirectory + "beats/160/jingle-bells.mp3",
   "volume" : -200,
   "player" : beatTwoPlayer,
   "toggled" : false,
@@ -119,10 +121,10 @@ var beatThreePlayer = new Tone.Player();
 var beatThree = {
   "selector" : '[data-beat-three]',
   "name" : "Jingle Bell Rock",
-  "url_100" : audioDirectory + "/beats/100/jingle-bell-rock.mp3",
-  "url_120" : audioDirectory + "/beats/120/jingle-bell-rock.mp3",
-  "url_140" : audioDirectory + "/beats/140/jingle-bell-rock.mp3",
-  "url_160" : audioDirectory + "/beats/160/jingle-bell-rock.mp3",
+  "url_100" : audioDirectory + "beats/100/jingle-bell-rock.mp3",
+  "url_120" : audioDirectory + "beats/120/jingle-bell-rock.mp3",
+  "url_140" : audioDirectory + "beats/140/jingle-bell-rock.mp3",
+  "url_160" : audioDirectory + "beats/160/jingle-bell-rock.mp3",
   "volume" : -200,
   "player" : beatThreePlayer,
   "toggled" : false,
@@ -134,10 +136,10 @@ var beatFourPlayer = new Tone.Player();
 var beatFour = {
   "selector" : '[data-beat-four]',
   "name" : "Sleigh Ride",
-  "url_100" : audioDirectory + "/beats/100/sleigh-ride.mp3",
-  "url_120" : audioDirectory + "/beats/120/sleigh-ride.mp3",
-  "url_140" : audioDirectory + "/beats/140/sleigh-ride.mp3",
-  "url_160" : audioDirectory + "/beats/160/sleigh-ride.mp3",
+  "url_100" : audioDirectory + "beats/100/sleigh-ride.mp3",
+  "url_120" : audioDirectory + "beats/120/sleigh-ride.mp3",
+  "url_140" : audioDirectory + "beats/140/sleigh-ride.mp3",
+  "url_160" : audioDirectory + "beats/160/sleigh-ride.mp3",
   "volume" : -200,
   "player" : beatFourPlayer,
   "toggled" : false,
@@ -150,10 +152,10 @@ var leadOnePlayer = new Tone.Player();
 var leadOne = {
   "selector" : '[data-lead-one]',
   "name" : "The Nutcracker",
-  "url_100" : audioDirectory + "/leads/100/the-nutcracker.mp3",
-  "url_120" : audioDirectory + "/leads/120/the-nutcracker.mp3",
-  "url_140" : audioDirectory + "/leads/140/the-nutcracker.mp3",
-  "url_160" : audioDirectory + "/leads/160/the-nutcracker.mp3",
+  "url_100" : audioDirectory + "leads/100/the-nutcracker.mp3",
+  "url_120" : audioDirectory + "leads/120/the-nutcracker.mp3",
+  "url_140" : audioDirectory + "leads/140/the-nutcracker.mp3",
+  "url_160" : audioDirectory + "leads/160/the-nutcracker.mp3",
   "volume" : -200,
   "player" : leadOnePlayer,
   "toggled" : false,
@@ -165,10 +167,10 @@ var leadTwoPlayer = new Tone.Player();
 var leadTwo = {
   "selector" : '[data-lead-two]',
   "name" : "Jingle Bells",
-  "url_100" : audioDirectory + "/leads/100/jingle-bells.mp3",
-  "url_120" : audioDirectory + "/leads/120/jingle-bells.mp3",
-  "url_140" : audioDirectory + "/leads/140/jingle-bells.mp3",
-  "url_160" : audioDirectory + "/leads/160/jingle-bells.mp3",
+  "url_100" : audioDirectory + "leads/100/jingle-bells.mp3",
+  "url_120" : audioDirectory + "leads/120/jingle-bells.mp3",
+  "url_140" : audioDirectory + "leads/140/jingle-bells.mp3",
+  "url_160" : audioDirectory + "leads/160/jingle-bells.mp3",
   "volume" : -200,
   "player" : leadTwoPlayer,
   "toggled" : false,
@@ -180,10 +182,10 @@ var leadThreePlayer = new Tone.Player();
 var leadThree = {
   "selector" : '[data-lead-three]',
   "name" : "Jingle Bell Rock",
-  "url_100" : audioDirectory + "/leads/100/jingle-bell-rock.mp3",
-  "url_120" : audioDirectory + "/leads/120/jingle-bell-rock.mp3",
-  "url_140" : audioDirectory + "/leads/140/jingle-bell-rock.mp3",
-  "url_160" : audioDirectory + "/leads/160/jingle-bell-rock.mp3",
+  "url_100" : audioDirectory + "leads/100/jingle-bell-rock.mp3",
+  "url_120" : audioDirectory + "leads/120/jingle-bell-rock.mp3",
+  "url_140" : audioDirectory + "leads/140/jingle-bell-rock.mp3",
+  "url_160" : audioDirectory + "leads/160/jingle-bell-rock.mp3",
   "volume" : -200,
   "player" : leadThreePlayer,
   "toggled" : false,
@@ -195,10 +197,10 @@ var leadFourPlayer = new Tone.Player();
 var leadFour = {
   "selector" : '[data-lead-four]',
   "name" : "Sleigh Ride",
-  "url_100" : audioDirectory + "/leads/100/sleigh-ride.mp3",
-  "url_120" : audioDirectory + "/leads/120/sleigh-ride.mp3",
-  "url_140" : audioDirectory + "/leads/140/sleigh-ride.mp3",
-  "url_160" : audioDirectory + "/leads/160/sleigh-ride.mp3",
+  "url_100" : audioDirectory + "leads/100/sleigh-ride.mp3",
+  "url_120" : audioDirectory + "leads/120/sleigh-ride.mp3",
+  "url_140" : audioDirectory + "leads/140/sleigh-ride.mp3",
+  "url_160" : audioDirectory + "leads/160/sleigh-ride.mp3",
   "volume" : -200,
   "player" : leadFourPlayer,
   "toggled" : false,
@@ -263,8 +265,8 @@ function togglePlayer(object, toggle) {
     } else if (toggle == "leads") {
       toggleOffLeads(object);
     }
-    object.player.setVolume(-10);
-    object.volume = -10;
+    object.player.setVolume(0);
+    object.volume = 0;
     $(object.selector).addClass('btn-enabled');
     object.toggled = true;
 
@@ -306,45 +308,62 @@ function stopAllPlayers() {
   }
 }
 
+var audioLoaded = 0;
+function updateLoadingBar() {
+  console.log(cardPreview);
+  if (cardPreview == true) {
+    audioLoaded++;
+    $('[data-preview-loading-text]').text("Creating preview.");
+    if (audioLoaded == 8) {
+      $('[data-preview-loader]').addClass('hidden');
+      $('[data-preview-content]').removeClass('hidden');
+      if (startScreen != true) {
+        Tone.Transport.start();
+      }
+    }
+  }
+  else {
+    audioLoaded++;
+    $('[data-loading-text]').text("Audio " + audioLoaded + "/8");
+    if (audioLoaded == 8) {
+      $('[data-loading]').addClass('hidden');
+
+      if (startScreen != true) {
+        Tone.Transport.start();
+      } else {
+        $('[data-start-screen]').removeClass('hidden');
+      }
+    }
+  }
+}
+
 function changeTempo(tempo){
   disposePlayers(); // Dispose of old players
   var playerName;
-  var numberLoaded = 0;
+  audioLoaded = 0;
+  if (cardPreview != true) {
+    $('[data-loading]').removeClass('hidden');
+  }
   for (var i = 0; i < numberOfPlayers; i++) {
     switch (tempo) {
       case 100:
         players[i].player = new Tone.Player(players[i].playerDetails.url_100, function() {
-          numberLoaded++;
-          console.log(numberLoaded + "/8 loaded")
-          if (numberLoaded == 8) {
-             Tone.Transport.start();
-          }
+          updateLoadingBar()
         });
         break;
       case 120:
         players[i].player = new Tone.Player(players[i].playerDetails.url_120, function() {
-          numberLoaded++;
-          if (numberLoaded == 8) {
-            if (startScreen != true) {
-              Tone.Transport.start();
-            }
-          }
+          updateLoadingBar();
         });
         break;
       case 140:
         players[i].player = new Tone.Player(players[i].playerDetails.url_140, function() {
-          numberLoaded++;
-          if (numberLoaded == 8) {
-             Tone.Transport.start();
-          }
+          updateLoadingBar()
         });
         break;
       case 160:
         players[i].player = new Tone.Player(players[i].playerDetails.url_160, function() {
-          numberLoaded++;
-          if (numberLoaded == 8) {
-             Tone.Transport.start();
-          }
+          updateLoadingBar()
         });
         break;
     }
@@ -363,21 +382,21 @@ var numberOfSamples = 3;
 var sampleOne = {
   "selector" : "[data-sample-one]",
   "name" : "kick",
-  "path" : audioDirectory + "kick.wav",
+  "path" : audioDirectory + "samples/kick.wav",
   "score" : []
 };
 
 var sampleTwo = {
   "selector" : "[data-sample-two]",
   "name" : "snare",
-  "path" : audioDirectory + "snare.mp3",
+  "path" : audioDirectory + "samples/snare.mp3",
   "score" : []
 };
 
 var sampleThree = {
   "selector" : "[data-sample-three]",
   "name" : "hi-hat",
-  "path" : audioDirectory + "hat.mp3",
+  "path" : audioDirectory + "samples/hat.mp3",
   "score" : []
 };
 
@@ -413,6 +432,11 @@ function playSample(keyPress, object) {
     $(object.selector).removeClass('btn-enabled'); 
   } else if (keyPress == 'none') {
     sampler.triggerAttack(object.name);
+
+    if (isRecording == true) {
+      object.score.push(Tone.Transport.getTransportTime());
+      console.log(object.score);
+    }
   }
 }
 
@@ -511,7 +535,70 @@ function stopRecording() {
   $('[data-current-progress]').removeClass('recording');
   $('[data-record-label]').text("Rec");
 
+  previewPopup();
+
+  //prepareScore();
+}
+
+function closePreview() {
+  $('[data-overlay]').addClass('hidden');
+  $('[data-preview]').addClass('hidden');
+  cardPreview = false;
+}
+
+function resetToggles() {
+  for (var i = 0; i < numberOfPlayers; i++) {
+    players[i].playerDetails.toggled = "false";
+    $(players[i].playerDetails.selector).removeClass('btn-enabled');
+  }
+}
+
+function resetVolume() {
+  for (var i = 0; i < numberOfPlayers; i++) {
+    players[i].playerDetails.volume = -200;
+    players[i].player.setVolume(-200);
+  }
+}
+
+function restart() {
+  closePreview();
+
+  // Reset all score
+  resetScores();
+
+  // Reset toggles
+  resetToggles();
+
+  // Reset volume
+  resetVolume();
+
+  // Make sure timeline is clear and everything is stopped
+  Tone.Transport.clearTimelines();
+  stopEverything();
+
+  // Set BPM from data and make sure transport is at 0:0:0
+  Tone.Transport.setBpm(currentBPM);
+  Tone.Transport.setTransportTime("0:0:0");
+
+  // Set all the players at current BPM
+  changeTempo(+currentBPM);
+}
+
+function submitPreview() {
+  stopEverything();
+
+  closePreview();
   prepareScore();
+
+  submitData();
+}
+
+function previewPopup() {
+  $('[data-overlay]').removeClass('hidden');
+  $('[data-preview]').removeClass('hidden');
+  cardPreview = true;
+
+  previewCard();
 }
 
 function updateProgressBar(time) {
@@ -549,39 +636,91 @@ function resetProgressBar() {
 }
 
 function setPlayerTimelines (object) {
+  //Tone.Transport.clearTimelines();
+
   // Put all the players back on the timeline
-  Tone.Transport.setTimeline(function(time){ object.player.start(time); }, "0:0:0");
-  Tone.Transport.setTimeline(function(time){ object.player.stop(time); }, bars-2 + ":3:0"); // Make sure it is stopped right before you start it again
+  Tone.Transport.setTimeline(function(){ object.player.start(); }, "0:0:0");
+  Tone.Transport.setTimeline(function(){
+      object.player.stop(); console.log(object.playerDetails.name + 'volume down');
+        object.playerDetails.volume=-200;
+        object.player.setVolume(-200);
+  }, bars-2 + ":3:3"); // Make sure it is stopped right before you start it again and volume is down (it will be enabled again if needed by the events below)
 
   // Set timeline events for their volume
 
   // Set on events
-  for (var i = 0; i < object.playerDetails.on_score.length; i++) {
-    Tone.Transport.setTimeline(function() {
-      console.log(object.playerDetails.name + 'volume up');
-      object.playerDetails.volume=-10;
-      object.player.setVolume(-10);
-    }, object.playerDetails.on_score[i]);
+  if (object.playerDetails.on_score) {
+    for (var i = 0; i < object.playerDetails.on_score.length; i++) {
+      Tone.Transport.setTimeline(function() {
+        console.log(object.playerDetails.name + 'volume up');
+        object.playerDetails.volume=0;
+        object.player.setVolume(0);
+      }, object.playerDetails.on_score[i]);
+    }
   }
 
   // Set off events
-  for (var i = 0; i < object.playerDetails.off_score.length; i++) {
-    Tone.Transport.setTimeline(function() {
-      console.log(object.playerDetails.name + 'volume down');
-      object.playerDetails.volume=-200;
-      object.player.setVolume(-200);
-    }, object.playerDetails.off_score[i]);
-  } 
+  if (object.playerDetails.off_score) {
+    for (var i = 0; i < object.playerDetails.off_score.length; i++) {
+      Tone.Transport.setTimeline(function() {
+        console.log(object.playerDetails.name + 'volume down');
+        object.playerDetails.volume=-200;
+        object.player.setVolume(-200);
+      }, object.playerDetails.off_score[i]);
+    }
+  }
+}
+
+function previewCard() {
+  console.log('Previewing card at ' + currentBPM + " BPM");
+
+  // Make sure timeline is clear and everything is stopped
+  Tone.Transport.clearTimelines();
+  stopEverything();
+
+  // Set BPM from data and make sure transport is at 0:0:0
+  Tone.Transport.setBpm(currentBPM);
+  Tone.Transport.setTransportTime("0:0:0");
+
+  // Set all player scores from data
+  for (var i = 0; i < numberOfPlayers; i++) {
+    setPlayerTimelines(players[i]);
+  }
+
+  samplerScore = {
+    "kick" : sampleOne.score,
+    "snare" : sampleTwo.score,
+    "hat" : sampleThree.score
+  }
+
+  // Parse multisampler notes from data
+  Tone.Note.parseScore(samplerScore);
+
+  // Route notes
+  Tone.Note.route("kick", function(time) {
+    sampler.triggerAttack("kick");
+  });
+
+  Tone.Note.route("snare", function(time) {
+    sampler.triggerAttack("snare");
+  });
+
+  Tone.Note.route("hat", function(time) {
+    sampler.triggerAttack("hi-hat");
+  });
+
+  // Set all the players at current BPM
+  changeTempo(+currentBPM);
 }
 
 var allData = {};
 
 function prepareScore() {
-  Tone.Transport.clearTimelines(); // Clear timeline
+  //Tone.Transport.clearTimelines(); // Clear timeline
 
-  for (var i = 0; i < numberOfPlayers; i++) {
-    setPlayerTimelines(players[i]);
-  }
+  // for (var i = 0; i < numberOfPlayers; i++) {
+  //   setPlayerTimelines(players[i]);
+  // }
 
   allData = {
     "players" : [

@@ -1,51 +1,4 @@
-function createCard() {
-  console.log('Creating card at' + allCardData.bpm);
-
-  // Make sure timeline is clear and everything is stopped
-  Tone.Transport.clearTimelines();
-  stopEverything();
-
-  // Set BPM from data and make sure transport is at beginning
-  currentBPM = allCardData.bpm;
-  Tone.Transport.setBpm(currentBPM);
-  Tone.Transport.setTransportTime("0:0:0");   // Set transport time back to 0:0:0
-
-  // Set all player scores from data
-  // TODO: check if score exists, if it doesn't, don't do it
-  for (var i = 0; i < numberOfPlayers; i++) {
-    if (allCardData.players[i].on_score) {
-      players[i].playerDetails.on_score = allCardData.players[i].on_score;
-    }
-    if (allCardData.players[i].off_score) {
-      players[i].playerDetails.off_score = allCardData.players[i].off_score;
-    }
-  }
-
-  // Set up all the player timelines
-  for (var i = 0; i < numberOfPlayers; i++) {
-    setPlayerTimelines(players[i]);
-  }
-
-  // Parse notes from data
-  Tone.Note.parseScore(allCardData.multiSampler);
-
-  // Route notes
-  Tone.Note.route("kick", function(time) {
-    sampler.triggerAttack("kick");
-  });
-
-  Tone.Note.route("snare", function(time) {
-    sampler.triggerAttack("snare");
-  });
-
-  Tone.Note.route("hat", function(time) {
-    sampler.triggerAttack("hi-hat");
-  });
-
-  // Set all the players at current BPM
-  changeTempo(+currentBPM);
-
-}
+startScreen = false;
 
 // If playback page
 card = {
@@ -66,3 +19,47 @@ function fetchData() {
 }
 
 fetchData();
+
+function createCard() {
+  console.log('Creating card at ' + allCardData.bpm + " BPM");
+
+  // Make sure timeline is clear and everything is stopped
+  Tone.Transport.clearTimelines();
+  stopEverything();
+
+  // Set BPM from data and make sure transport is at 0:0:0
+  currentBPM = allCardData.bpm;
+  Tone.Transport.setBpm(currentBPM);
+  Tone.Transport.setTransportTime("0:0:0");
+
+  // Set all player scores from data
+  for (var i = 0; i < numberOfPlayers; i++) {
+    if (allCardData.players) {
+      if (allCardData.players[i]) {
+        players[i].playerDetails.on_score = allCardData.players[i].on_score;
+        players[i].playerDetails.off_score = allCardData.players[i].off_score;
+
+        setPlayerTimelines(players[i]);
+      }
+    }
+  }
+
+  // Parse multisampler notes from data
+  Tone.Note.parseScore(allCardData.multiSampler);
+
+  // Route notes
+  Tone.Note.route("kick", function(time) {
+    sampler.triggerAttack("kick");
+  });
+
+  Tone.Note.route("snare", function(time) {
+    sampler.triggerAttack("snare");
+  });
+
+  Tone.Note.route("hat", function(time) {
+    sampler.triggerAttack("hi-hat");
+  });
+
+  // Set all the players at current BPM
+  changeTempo(+currentBPM);
+}

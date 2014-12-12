@@ -44,15 +44,17 @@ input[type="button"], input[type="submit"], input[type="reset"] {
   -webkit-appearance: none; }
 
 html {
-  font-size: 20px;
+  font-size: 24px;
   -webkit-font-smoothing: antialiased;
   text-align: center; }
 
 body {
-  font-family: "proxima-nova";
+  font-family: "gooddog-new";
   line-height: 1.5;
   font-weight: 400;
-  color: #717171; }
+  color: black;
+  text-transform: uppercase;
+  letter-spacing: 1px; }
 
 h1 {
   font-size: 5.5rem;
@@ -94,7 +96,7 @@ button, .btn {
   padding: 15px 2rem;
   border: 2px solid #57986e;
   text-transform: uppercase;
-  font-family: "proxima-nova";
+  font-family: "gooddog-new";
   -webkit-font-smoothing: antialiased;
   letter-spacing: .1rem;
   color: #57986e;
@@ -148,6 +150,181 @@ button, .btn {
   position: relative;
   top: 50%;
   transform: translateY(-50%); }
+
+a:hover {
+  cursor: pointer; }
+
+.svg-button {
+  display: inline-block;
+  vertical-align: middle; }
+
+.start {
+  background: url(../images/start/start.svg) no-repeat center center;
+  width: 120px;
+  height: 112px;
+  margin-right: 10px; }
+  .start:hover {
+    background: url(../images/start/start-hover.svg) no-repeat center center; }
+
+.how-to {
+  background: url(../images/start/how-to.svg) no-repeat center center;
+  width: 129px;
+  height: 57px;
+  margin-left: 10px; }
+  .how-to:hover {
+    background: url(../images/start/how-to-hover.svg) no-repeat center center; }
+
+.wrap-beat {
+  background: url(../images/soundboard/wrap-beat.svg) no-repeat center center;
+  width: 194px;
+  height: 59px; }
+  .wrap-beat:hover, .wrap-beat.btn-enabled {
+    background: url(../images/soundboard/wrap-beat-hover.svg) no-repeat center center; }
+
+.slay-music {
+  background: url(../images/soundboard/slay-music.svg) no-repeat center center;
+  width: 190px;
+  height: 58px; }
+  .slay-music:hover, .slay-music.btn-enabled {
+    background: url(../images/soundboard/slay-music-hover.svg) no-repeat center center; }
+
+.indie-clause {
+  background: url(../images/soundboard/indie-clause.svg) no-repeat center center;
+  width: 219px;
+  height: 56px; }
+  .indie-clause:hover, .indie-clause.btn-enabled {
+    background: url(../images/soundboard/indie-clause-hover.svg) no-repeat center center; }
+
+.drumkitmas {
+  background: url(../images/soundboard/drumkitmas.svg) no-repeat center center;
+  width: 215px;
+  height: 59px; }
+  .drumkitmas:hover, .drumkitmas.btn-enabled {
+    background: url(../images/soundboard/drumkitmas-hover.svg) no-repeat center center; }
+
+.elves-2-men {
+  background: url(../images/soundboard/elves-2-men.svg) no-repeat center center;
+  width: 195px;
+  height: 110px; }
+  .elves-2-men:hover, .elves-2-men.btn-enabled {
+    background: url(../images/soundboard/elves-2-men-hover.svg) no-repeat center center; }
+
+.smells-like {
+  background: url(../images/soundboard/smells-like.svg) no-repeat center center;
+  width: 193px;
+  height: 122px; }
+  .smells-like:hover, .smells-like.btn-enabled {
+    background: url(../images/soundboard/smells-like-hover.svg) no-repeat center center; }
+
+.mr-tannen {
+  background: url(../images/soundboard/mr-tannen.svg) no-repeat center center;
+  width: 192px;
+  height: 115px; }
+  .mr-tannen:hover, .mr-tannen.btn-enabled {
+    background: url(../images/soundboard/mr-tannen-hover.svg) no-repeat center center; }
+
+.all-i-want {
+  background: url(../images/soundboard/all-i-want.svg) no-repeat center center;
+  width: 189px;
+  height: 113px; }
+  .all-i-want:hover, .all-i-want.btn-enabled {
+    background: url(../images/soundboard/all-i-want-hover.svg) no-repeat center center; }
+
+.santa-omg {
+  background: url(../images/soundboard/santa-omg.svg) no-repeat center center;
+  width: 211px;
+  height: 110px; }
+  .santa-omg:hover, .santa-omg.btn-enabled {
+    background: url(../images/soundboard/santa-omg-hover.svg) no-repeat center center; }
+
+.youll-shoot {
+  background: url(../images/soundboard/youll-shoot.svg) no-repeat center center;
+  width: 206px;
+  height: 105px; }
+  .youll-shoot:hover, .youll-shoot.btn-enabled {
+    background: url(../images/soundboard/youll-shoot-hover.svg) no-repeat center center; }
+
+.merry-christmas {
+  background: url(../images/soundboard/merry-christmas.svg) no-repeat center center;
+  width: 210px;
+  height: 110px; }
+  .merry-christmas:hover, .merry-christmas.btn-enabled {
+    background: url(../images/soundboard/merry-christmas-hover.svg) no-repeat center center; }
+
+.ho-ho-ho {
+  background: url(../images/soundboard/ho-ho-ho.svg) no-repeat center center;
+  width: 201px;
+  height: 98px; }
+  .ho-ho-ho:hover, .ho-ho-ho.btn-enabled {
+    background: url(../images/soundboard/ho-ho-ho-hover.svg) no-repeat center center; }
+
+.gun-shot {
+  background: url(../images/soundboard/gun-shot.svg) no-repeat center center;
+  width: 207px;
+  height: 102px; }
+  .gun-shot:hover, .gun-shot.btn-enabled {
+    background: url(../images/soundboard/gun-shot-hover.svg) no-repeat center center; }
+
+.fog-horn {
+  background: url(../images/soundboard/fog-horn.svg) no-repeat center center;
+  width: 196px;
+  height: 105px; }
+  .fog-horn:hover, .fog-horn.btn-enabled {
+    background: url(../images/soundboard/fog-horn-hover.svg) no-repeat center center; }
+
+.fa-la-la {
+  background: url(../images/soundboard/fa-la-la.svg) no-repeat center center;
+  width: 212px;
+  height: 102px; }
+  .fa-la-la:hover, .fa-la-la.btn-enabled {
+    background: url(../images/soundboard/fa-la-la-hover.svg) no-repeat center center; }
+
+.sleigh-bells {
+  background: url(../images/soundboard/sleigh-bells.svg) no-repeat center center;
+  width: 195px;
+  height: 93px; }
+  .sleigh-bells:hover, .sleigh-bells.btn-enabled {
+    background: url(../images/soundboard/sleigh-bells-hover.svg) no-repeat center center; }
+
+.joy-to-the {
+  background: url(../images/soundboard/joy-to-the.svg) no-repeat center center;
+  width: 211px;
+  height: 99px; }
+  .joy-to-the:hover, .joy-to-the.btn-enabled {
+    background: url(../images/soundboard/joy-to-the-hover.svg) no-repeat center center; }
+
+.merry-xmas-you {
+  background: url(../images/soundboard/merry-xmas-you.svg) no-repeat center center;
+  width: 196px;
+  height: 106px; }
+  .merry-xmas-you:hover, .merry-xmas-you.btn-enabled {
+    background: url(../images/soundboard/merry-xmas-you-hover.svg) no-repeat center center; }
+
+.put-that-cookie {
+  background: url(../images/soundboard/put-that-cookie.svg) no-repeat center center;
+  width: 214px;
+  height: 100px; }
+  .put-that-cookie:hover, .put-that-cookie.btn-enabled {
+    background: url(../images/soundboard/put-that-cookie-hover.svg) no-repeat center center; }
+
+.bah-humbug {
+  background: url(../images/soundboard/bah-humbug.svg) no-repeat center center;
+  width: 197px;
+  height: 102px; }
+  .bah-humbug:hover, .bah-humbug.btn-enabled {
+    background: url(../images/soundboard/bah-humbug-hover.svg) no-repeat center center; }
+
+.restart {
+  background: url(../images/soundboard/restart.svg) no-repeat center center;
+  width: 144px;
+  height: 48px; }
+
+.preview-next {
+  background: url(../images/soundboard/next.svg) no-repeat center center;
+  width: 122px;
+  height: 47px; }
+  .preview-next:hover, .preview-next.btn-enabled {
+    background: url(../images/soundboard/next-hover.svg) no-repeat center center; }
 
 .m0 {
   margin: 0; }
@@ -341,26 +518,12 @@ html, body {
   height: 100%; }
 
 .wrapper {
-  width: 95%;
+  width: 90%;
   max-width: 1100px;
   margin: 0 auto; }
   .wrapper p {
     width: 65%;
-    margin: 1rem auto 3rem auto; }
-
-.screen {
-  height: 100%;
-  width: 100%;
-  top: 0;
-  position: fixed;
-  background: white;
-  z-index: 2; }
-  .screen .screen-content {
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); }
+    margin: 1rem auto 1rem auto; }
 
 .toolbar {
   position: fixed;
@@ -445,3 +608,98 @@ hr {
 
 .float-none {
   float: none; }
+
+body {
+  background: #89cde0; }
+
+.loading {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  position: fixed; }
+
+.screen {
+  background: #89cde0;
+  z-index: 2; }
+  .screen .screen-content {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+
+.loading {
+  z-index: 9; }
+
+.start-screen {
+  z-index: 8; }
+
+.overlay {
+  z-index: 6;
+  background: rgba(0, 0, 0, 0.7);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  position: fixed; }
+
+.modal {
+  z-index: 7;
+  padding: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background: white; }
+
+.ornaments {
+  background: url(../images/ornaments.svg) repeat-x top center;
+  width: 100%;
+  height: 203px;
+  margin-top: -230px;
+  position: relative;
+  z-index: 9;
+  -webkit-animation: drop-in 2s ease forwards;
+  animation: drop-in 2s ease forwards; }
+
+@-webkit-keyframes drop-in {
+  0% {
+    margin-top: -230px; }
+
+  100% {
+    margin-top: 0px; } }
+
+@keyframes drop-in {
+  0% {
+    margin-top: -230px; }
+
+  100% {
+    margin-top: 0px; } }
+
+.logo {
+  background: url(../images/themerrymaker.svg) no-repeat top center;
+  width: 100%;
+  height: 780px;
+  background-size: contain;
+  margin-top: 100px; }
+
+@-webkit-keyframes up-down {
+  0% {
+    top: -200px; }
+
+  50% {
+    top: -230px; }
+
+  100% {
+    top: -200px; } }
+
+@keyframes up-down {
+  0% {
+    top: -200px; }
+
+  50% {
+    top: -230px; }
+
+  100% {
+    top: -200px; } }

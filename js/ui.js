@@ -7,6 +7,7 @@ $('[data-get-started]').click(function(){
 	$('[data-builder]').removeClass('hidden');
 	Tone.Transport.setTransportTime("0:0:0");
 	Tone.Transport.start();
+  $('[data-toolbar]').css({'z-index' : '9'})
 	startScreen =false;
 });
 
@@ -48,6 +49,10 @@ $('[data-stop]').click(function() { stopRecording(); });          // Stop
 $('[data-play]').click(function() { play(); });                   // Stop
 $('[data-click]').click(function() { toggleMetronome(); });       // Toggle metronome
 $('[data-submit-data]').click(function() { submitData(); });
+
+// Preview modal
+$('[data-restart]').click(function() { restart(); });
+$('[data-preview-next]').click(function() { submitPreview(); });
 
 // BPM Selector
 $('[data-bpm]').change(function () {
