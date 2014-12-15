@@ -1,4 +1,5 @@
 startScreen = false;
+cardScreen = true;
 
 // If playback page
 card = {
@@ -22,6 +23,14 @@ fetchData();
 
 function createCard() {
   console.log('Creating card at ' + allCardData.bpm + " BPM");
+
+  // Set background
+  currentBackground = allCardData.background;
+  changeBackground();
+
+  // Set greeting
+  currentGreeting = allCardData.greeting;
+  changeGreeting();
 
   // Make sure timeline is clear and everything is stopped
   Tone.Transport.clearTimelines();
@@ -48,16 +57,52 @@ function createCard() {
   Tone.Note.parseScore(allCardData.multiSampler);
 
   // Route notes
-  Tone.Note.route("kick", function(time) {
-    sampler.triggerAttack("kick");
+  Tone.Note.route("sample-one", function(time) {
+    sampler.triggerAttack("sample-one");
   });
 
-  Tone.Note.route("snare", function(time) {
-    sampler.triggerAttack("snare");
+  Tone.Note.route("sample-two", function(time) {
+    sampler.triggerAttack("sample-two");
   });
 
-  Tone.Note.route("hat", function(time) {
-    sampler.triggerAttack("hi-hat");
+  Tone.Note.route("sample-three", function(time) {
+    sampler.triggerAttack("sample-three");
+  });
+
+  Tone.Note.route("sample-four", function(time) {
+    sampler.triggerAttack("sample-four");
+  });
+
+  Tone.Note.route("sample-five", function(time) {
+    sampler.triggerAttack("sample-five");
+  });
+
+  Tone.Note.route("sample-six", function(time) {
+    sampler.triggerAttack("sample-six");
+  });
+
+  Tone.Note.route("sample-seven", function(time) {
+    sampler.triggerAttack("sample-seven");
+  });
+
+  Tone.Note.route("sample-eight", function(time) {
+    sampler.triggerAttack("sample-eight");
+  });
+
+  Tone.Note.route("sample-nine", function(time) {
+    sampler.triggerAttack("sample-nine");
+  });
+
+  Tone.Note.route("sample-ten", function(time) {
+    sampler.triggerAttack("sample-ten");
+  });
+
+  Tone.Note.route("sample-eleven", function(time) {
+    sampler.triggerAttack("sample-eleven");
+  });
+
+  Tone.Note.route("sample-twelve", function(time) {
+    sampler.triggerAttack("sample-twelve");
   });
 
   // Set all the players at current BPM

@@ -21,7 +21,7 @@ function submitData() {
     url: "/build.php",
     data: finalScore,
     success: function(data) {
-      alert(data);
+      window.location.href = "/?id=" + data;
     }
   });
 }
@@ -39,20 +39,63 @@ $('[data-lead-three]').click(function() { togglePlayer(leadThree, "leads"); });
 $('[data-lead-four]').click(function() { togglePlayer(leadFour, "leads"); });
 
 // Pad
-$('[data-sample-one]').click(function()  { playSample('none', sampleOne); });                     // Play Airhorn
-$('[data-sample-two]').click(function()  { playSample('none', sampleTwo); });                     // Play Snare
-$('[data-sample-three]').click(function()  { playSample('none', sampleThree); });                // Play Snare
+$('[data-sample-one]').click(function()  { playSample('none', sampleOne); });
+$('[data-sample-two]').click(function()  { playSample('none', sampleTwo); });
+$('[data-sample-three]').click(function()  { playSample('none', sampleThree); });
+$('[data-sample-four]').click(function()  { playSample('none', sampleFour); });
+$('[data-sample-five]').click(function()  { playSample('none', sampleFive); });
+$('[data-sample-six]').click(function()  { playSample('none', sampleSix); });
+$('[data-sample-seven]').click(function()  { playSample('none', sampleSeven); });
+$('[data-sample-eight]').click(function()  { playSample('none', sampleEight); });
+$('[data-sample-nine]').click(function()  { playSample('none', sampleNine); });
+$('[data-sample-ten]').click(function()  { playSample('none', sampleTen); });
+$('[data-sample-eleven]').click(function()  { playSample('none', sampleEleven); });
+$('[data-sample-twelve]').click(function()  { playSample('none', sampleTwelve); });
 
 // Toolbar
 $('[data-record]').click(function() { record(); });               // Record
 $('[data-stop]').click(function() { stopRecording(); });          // Stop
 $('[data-play]').click(function() { play(); });                   // Stop
 $('[data-click]').click(function() { toggleMetronome(); });       // Toggle metronome
-$('[data-submit-data]').click(function() { submitData(); });
+$('[data-done]').click(function() { submitData(); });
 
 // Preview modal
 $('[data-restart]').click(function() { restart(); });
 $('[data-preview-next]').click(function() { submitPreview(); });
+
+var tempoPosition = 1;
+var tempos = [100,120,140,160];
+changeTempo(+currentBPM);
+
+$('[data-up-tempo]').click(function() {
+  if ((audioLoaded == 8) && (isRecording != true) && (tempoPosition < (tempos.length)-1)) {
+    stopEverything();
+
+    tempoPosition++;
+
+    currentBPM = tempos[tempoPosition];
+    Tone.Transport.setBpm(currentBPM);
+    Tone.Transport.setTransportTime("0:0:0");   // Set transport time back to 0:0:0
+
+    $('[data-current-tempo]').text(currentBPM);
+    changeTempo(currentBPM);
+  }
+});
+
+$('[data-down-tempo]').click(function() {
+  if ((audioLoaded == 8) && (isRecording != true) && (tempoPosition != 0)) {
+    stopEverything();
+
+    tempoPosition--;
+
+    currentBPM = tempos[tempoPosition];
+    Tone.Transport.setBpm(currentBPM);
+    Tone.Transport.setTransportTime("0:0:0");   // Set transport time back to 0:0:0
+
+    $('[data-current-tempo]').text(currentBPM);
+    changeTempo(currentBPM);
+  }
+});
 
 // BPM Selector
 $('[data-bpm]').change(function () {
@@ -77,5 +120,44 @@ $('[data-bpm]').change(function () {
       changeTempo(160);
       break; 
   }
-
 }).change();
+
+$('[data-next-bg]').click(function(){
+  if (currentBackground < (backgrounds.length)-1) {
+    currentBackground++;
+    changeBackground();
+  } else {
+    currentBackground = 0;
+    changeBackground();
+  }
+});
+
+$('[data-prev-bg]').click(function(){
+  if (currentBackground != 0) {
+    currentBackground--;
+    changeBackground();
+  } else {
+    currentBackground = (backgrounds.length)-1;
+    changeBackground();
+  }
+});
+
+$('[data-next-greeting]').click(function(){
+  if (currentGreeting < (greetings.length)-1) {
+    currentGreeting++;
+    changeGreeting();
+  } else {
+    currentGreeting = 0;
+    changeGreeting();
+  }
+});
+
+$('[data-prev-greeting]').click(function(){
+  if (currentGreeting!= 0) {
+    currentGreeting--;
+    changeGreeting();
+  } else {
+    currentGreeting = (greetings.length)-1;
+    changeGreeting();
+  }
+});

@@ -10,7 +10,6 @@ button, .btn {
 	color:$light-green;
 	background:transparent;
 	outline:0;
-	cursor: pointer;
 	margin:0 $space/2;
 	line-height: 1.3rem;
 	font-size:.9rem;
@@ -57,6 +56,7 @@ button, .btn {
 }
 
 .record {
+	cursor: url(../images/cursor/hover.png), auto !important;
 	display:inline-block;
 }
 
@@ -66,6 +66,7 @@ button, .btn {
 	height:54px;
 	border-radius: 50%;
 	margin:0 auto;
+	cursor: url(../images/cursor/hover.png), auto !important;
 }
 
 .rec-inner {
@@ -77,15 +78,22 @@ button, .btn {
 	position: relative;
   	top: 50%;
   	transform: translateY(-50%);
+  	cursor: url(../images/cursor/hover.png), auto !important;
 }
 
-a:hover {
-	cursor:pointer;
+.record:hover .rec-inner {
+	width:44px;
+	height:44px;
+	cursor: url(../images/cursor/hover.png), auto !important;
 }
 
 .svg-button {
 	display:inline-block;
 	vertical-align: middle;
+}
+
+.temp a:hover {
+	cursor: url(../images/cursor/hover.png), auto !important;
 }
 
 // Start
@@ -325,5 +333,91 @@ a:hover {
 
 	&:hover, &.btn-enabled {
 		background:url(../images/soundboard/next-hover.svg) no-repeat center center;
+	}
+}
+
+// Change BG
+.next-bg {
+	background:url(../images/change-bg/next-bg.svg) no-repeat center center;
+	width:115px;
+	height:47px;
+
+	&:hover, &.btn-enabled {
+		background:url(../images/change-bg/next-bg-hover.svg) no-repeat center center;
+	}
+}
+
+.prev-bg {
+	background:url(../images/change-bg/prev-bg.svg) no-repeat center center;
+	width:114px;
+	height:48px;
+
+	&:hover, &.btn-enabled {
+		background:url(../images/change-bg/prev-bg-hover.svg) no-repeat center center;
+	}
+}
+
+.done {
+	background:url(../images/change-bg/done.svg) no-repeat center center;
+	width:114px;
+	height:118px;
+
+	&:hover, &.btn-enabled {
+		background:url(../images/change-bg/done-hover.svg) no-repeat center center;
+	}
+}
+
+// Change Greeting
+
+.next-greeting {
+	background:url(../images/greetings/next-greeting.svg) no-repeat center center;
+	width:42px;
+	height:47px;
+	float:right;
+
+	&:hover, &.btn-enabled {
+		background:url(../images/greetings/next-greeting-hover.svg) no-repeat center center;
+	}
+}
+
+.prev-greeting {
+	background:url(../images/greetings/prev-greeting.svg) no-repeat center center;
+	width:41px;
+	height:46px;
+	float:left;
+
+	&:hover, &.btn-enabled {
+		background:url(../images/greetings/prev-greeting-hover.svg) no-repeat center center;
+	}
+}
+
+// Card
+.make-your-own {
+	background:url(../images/card/make-your-own.svg) no-repeat center center;
+	width:249px;
+	height:57px;
+
+	&:hover, &.btn-enabled {
+		background:url(../images/card/make-your-own-hover.svg) no-repeat center center;
+	}
+}
+
+.share-twitter {
+	background:url(../images/card/share-twitter.svg) no-repeat center center;
+	width:52px;
+	height:48px;
+
+	&:hover, &.btn-enabled {
+		background:url(../images/card/share-twitter-hover.svg) no-repeat center center;
+	}
+}
+
+.share-fb {
+	background:url(../images/card/share-fb.svg) no-repeat center center;
+	width:51px;
+	height:48px;
+
+	&:hover, &.btn-enabled {
+		background:url(../images/card/share-fb-hover.svg) no-repeat center center;
 	}
 }

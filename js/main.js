@@ -1,16 +1,57 @@
-
 // Start debug
 console.log("Transport: "+Tone.Transport.state);
 
 // Transport time in console
-Tone.Transport.setInterval(function(){
+var seconds = Tone.Transport.setInterval(function(){
   console.log("Transport time: "+Tone.Transport.getTransportTime());
 },"1:0:0")
 
-Tone.Transport.setInterval(function(){
+var ms = Tone.Transport.setInterval(function(){
   console.log("Transport time: "+Tone.Transport.getTransportTime());
 },"0:0:1")
 // End debug
+
+// If not a card, redirect to create page
+if ($('[data-card-id]').data('value') == -1) {
+  window.location.href = "/create"
+}
+
+// Greetings
+var currentGreeting = 0;
+var greetings = [
+  "/images/greetings/merry-christmas.svg",
+  "/images/greetings/be-careful.svg",
+  "/images/greetings/or-whatever.svg",
+  "/images/greetings/heres-to.svg"
+]
+
+function changeGreeting() {
+  if (cardPreview == true) {
+    allData.greeting = currentGreeting;
+  }
+  $('[data-greeting]').attr("src", greetings[currentGreeting]);
+};
+
+changeGreeting();
+
+// Backgrounds
+var currentBackground = 0;
+var backgrounds = [
+  "http://media.giphy.com/media/xOhyfTrZZzfyM/giphy.gif",
+  "http://media.giphy.com/media/OeoPXQPSzteiA/giphy.gif",
+  "http://media.giphy.com/media/LJrMjb87w16q4/giphy.gif",
+  "http://media.giphy.com/media/fKfz1mB6FexMY/giphy.gif",
+  "http://media.giphy.com/media/10swQPVv0kvqp2/giphy.gif"
+]
+
+function changeBackground() {
+  if (cardPreview == true) {
+    allData.background = currentBackground;
+  }
+  $('[data-card-bg]').css({'background' : 'url('+backgrounds[currentBackground]+')', 'background-size':'cover'});
+};
+
+changeBackground();
 
 // Samples
 var audioDirectory            = "/audio/";
@@ -376,38 +417,111 @@ function stopEverything() {
   stopAllPlayers();
 }
 
-var numberOfSamples = 3;
+var numberOfSamples = 12;
 
 // Sampler/Pad
 var sampleOne = {
   "selector" : "[data-sample-one]",
-  "name" : "kick",
-  "path" : audioDirectory + "samples/kick.wav",
+  "name" : "sample-one",
+  "path" : audioDirectory + "samples/sample1.mp3",
   "score" : []
 };
 
 var sampleTwo = {
   "selector" : "[data-sample-two]",
-  "name" : "snare",
-  "path" : audioDirectory + "samples/snare.mp3",
+  "name" : "sample-two",
+  "path" : audioDirectory + "samples/sample2.mp3",
   "score" : []
 };
 
 var sampleThree = {
   "selector" : "[data-sample-three]",
-  "name" : "hi-hat",
-  "path" : audioDirectory + "samples/hat.mp3",
+  "name" : "sample-three",
+  "path" : audioDirectory + "samples/sample3.mp3",
+  "score" : []
+};
+
+var sampleFour = {
+  "selector" : "[data-sample-four]",
+  "name" : "sample-four",
+  "path" : audioDirectory + "samples/sample4.mp3",
+  "score" : []
+};
+
+var sampleFive = {
+  "selector" : "[data-sample-five]",
+  "name" : "sample-five",
+  "path" : audioDirectory + "samples/sample5.mp3",
+  "score" : []
+};
+
+var sampleSix = {
+  "selector" : "[data-sample-six]",
+  "name" : "sample-six",
+  "path" : audioDirectory + "samples/sample6.mp3",
+  "score" : []
+};
+
+var sampleSeven = {
+  "selector" : "[data-sample-seven]",
+  "name" : "sample-seven",
+  "path" : audioDirectory + "samples/sample7.mp3",
+  "score" : []
+};
+
+var sampleEight = {
+  "selector" : "[data-sample-eight]",
+  "name" : "sample-eight",
+  "path" : audioDirectory + "samples/sample8.mp3",
+  "score" : []
+};
+
+var sampleNine = {
+  "selector" : "[data-sample-nine]",
+  "name" : "sample-nine",
+  "path" : audioDirectory + "samples/sample9.mp3",
+  "score" : []
+};
+
+var sampleTen = {
+  "selector" : "[data-sample-ten]",
+  "name" : "sample-ten",
+  "path" : audioDirectory + "samples/sample10.mp3",
+  "score" : []
+};
+
+var sampleEleven = {
+  "selector" : "[data-sample-Eleven]",
+  "name" : "sample-eleven",
+  "path" : audioDirectory + "samples/sample11.mp3",
+  "score" : []
+};
+
+var sampleTwelve = {
+  "selector" : "[data-sample-twelve]",
+  "name" : "sample-twelve",
+  "path" : audioDirectory + "samples/sample12.mp3",
   "score" : []
 };
 
 var sampler = new Tone.MultiSampler({
-   "kick" : sampleOne.path,
-   "snare" : sampleTwo.path,
-   "hi-hat" : sampleThree.path
+   "sample-one" : sampleOne.path,
+   "sample-two" : sampleTwo.path,
+   "sample-three" : sampleThree.path,
+   "sample-four" : sampleFour.path,
+   "sample-five" : sampleFive.path,
+   "sample-six" : sampleSix.path,
+   "sample-seven" : sampleSeven.path,
+   "sample-eight" : sampleEight.path,
+   "sample-nine" : sampleNine.path,
+   "sample-ten" : sampleTen.path,
+   "sample-eleven" : sampleEleven.path,
+   "sample-twelve" : sampleTwelve.path
 });
+
 sampler.toMaster();
 
-var samples = [sampleOne, sampleTwo, sampleThree]
+var samples = [sampleOne, sampleTwo, sampleThree, sampleFour, sampleFive, sampleSix, sampleSeven, sampleEight, sampleNine, sampleTen, sampleEleven, sampleTwelve]
 
 function resetScores() {
   for (var i = 0; i < numberOfSamples; i++) {
@@ -454,10 +568,31 @@ $(window).keydown(function(e) {
       playSample('down', sampleThree);
       break;
     case 52:
-
+      playSample('down', sampleFour);
       break;
     case 53:
-
+      playSample('down', sampleFive);
+      break;
+    case 54:
+      playSample('down', sampleSix);
+      break;
+    case 55:
+      playSample('down', sampleSeven);
+      break;
+    case 56:
+      playSample('down', sampleEight);
+      break;
+    case 57:
+      playSample('down', sampleNine);
+      break;
+    case 48:
+      playSample('down', sampleTen);
+      break;
+    case 189:
+      playSample('down', sampleEleven);
+      break;
+    case 187:
+      playSample('down', sampleTwelve);
       break;
   }
 });
@@ -476,10 +611,31 @@ $(window).keyup(function(e) {
       playSample('up', sampleThree);
       break;
     case 52:
-
+      playSample('up', sampleFour);
       break;
     case 53:
-
+      playSample('up', sampleFive);
+      break;
+    case 54:
+      playSample('up', sampleSix);
+      break;
+    case 55:
+      playSample('up', sampleSeven);
+      break;
+    case 56:
+      playSample('up', sampleEight);
+      break;
+    case 57:
+      playSample('up', sampleNine);
+      break;
+    case 48:
+      playSample('up', sampleTen);
+      break;
+    case 189:
+      playSample('up', sampleEleven);
+      break;
+    case 187:
+      playSample('up', sampleTwelve);
       break;
   }
 });
@@ -517,7 +673,7 @@ function recording() {
     if (currentProgress == 0) {
       isRecording = true;
 
-      $('[data-record-label]').text("Recording");
+      $('[data-record-label]').text("Stop");
     }
 
     updateProgressBar((bars-1)*16);
@@ -543,7 +699,7 @@ function stopRecording() {
 function closePreview() {
   $('[data-overlay]').addClass('hidden');
   $('[data-preview]').addClass('hidden');
-  cardPreview = false;
+  //cardPreview = false;
 }
 
 function resetToggles() {
@@ -585,12 +741,13 @@ function restart() {
 }
 
 function submitPreview() {
-  stopEverything();
+  //stopEverything();
 
   closePreview();
   prepareScore();
 
-  submitData();
+  $('[data-builder]').addClass('hidden');
+  $('[data-card-bg]').removeClass('hidden');
 }
 
 function previewPopup() {
@@ -688,25 +845,70 @@ function previewCard() {
   }
 
   samplerScore = {
-    "kick" : sampleOne.score,
-    "snare" : sampleTwo.score,
-    "hat" : sampleThree.score
+    "sample-one" : sampleOne.score,
+    "sample-two" : sampleTwo.score,
+    "sample-three" : sampleThree.score,
+    "sample-four" : sampleFour.score,
+    "sample-five" : sampleFive.score,
+    "sample-six" : sampleSix.score,
+    "sample-seven" : sampleSeven.score,
+    "sample-eight" : sampleEight.score,
+    "sample-nine" : sampleNine.score,
+    "sample-ten" : sampleTen.score,
+    "sample-eleven" : sampleEleven.score,
+    "sample-twelve" : sampleTwelve.score
   }
 
   // Parse multisampler notes from data
   Tone.Note.parseScore(samplerScore);
 
   // Route notes
-  Tone.Note.route("kick", function(time) {
-    sampler.triggerAttack("kick");
+  Tone.Note.route("sample-one", function(time) {
+    sampler.triggerAttack("sample-one");
   });
 
-  Tone.Note.route("snare", function(time) {
-    sampler.triggerAttack("snare");
+  Tone.Note.route("sample-two", function(time) {
+    sampler.triggerAttack("sample-two");
   });
 
-  Tone.Note.route("hat", function(time) {
-    sampler.triggerAttack("hi-hat");
+  Tone.Note.route("sample-three", function(time) {
+    sampler.triggerAttack("sample-three");
+  });
+
+  Tone.Note.route("sample-four", function(time) {
+    sampler.triggerAttack("sample-four");
+  });
+
+  Tone.Note.route("sample-five", function(time) {
+    sampler.triggerAttack("sample-five");
+  });
+
+  Tone.Note.route("sample-six", function(time) {
+    sampler.triggerAttack("sample-six");
+  });
+
+  Tone.Note.route("sample-seven", function(time) {
+    sampler.triggerAttack("sample-seven");
+  });
+
+  Tone.Note.route("sample-eight", function(time) {
+    sampler.triggerAttack("sample-eight");
+  });
+
+  Tone.Note.route("sample-nine", function(time) {
+    sampler.triggerAttack("sample-nine");
+  });
+
+  Tone.Note.route("sample-ten", function(time) {
+    sampler.triggerAttack("sample-ten");
+  });
+
+  Tone.Note.route("sample-eleven", function(time) {
+    sampler.triggerAttack("sample-eleven");
+  });
+
+  Tone.Note.route("sample-twelve", function(time) {
+    sampler.triggerAttack("sample-twelve");
   });
 
   // Set all the players at current BPM
@@ -734,11 +936,22 @@ function prepareScore() {
       { "on_score" : players[7].playerDetails.on_score, "off_score" : players[7].playerDetails.off_score }
     ],
     "multiSampler" : samplerScore = {
-      "kick" : sampleOne.score,
-      "snare" : sampleTwo.score,
-      "hat" : sampleThree.score
+      "sample-one" : sampleOne.score,
+      "sample-two" : sampleTwo.score,
+      "sample-three" : sampleThree.score,
+      "sample-four" : sampleFour.score,
+      "sample-five" : sampleFive.score,
+      "sample-six" : sampleSix.score,
+      "sample-seven" : sampleSeven.score,
+      "sample-eight" : sampleEight.score,
+      "sample-nine" : sampleNine.score,
+      "sample-ten" : sampleTen.score,
+      "sample-eleven" : sampleEleven.score,
+      "sample-twelve" : sampleTwelve.score
     },
-    "bpm" : currentBPM
+    "bpm" : currentBPM,
+    "background": 0,
+    "greeting" : 0
   };
 }
 

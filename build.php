@@ -18,7 +18,9 @@ $stmt = "INSERT INTO cards (score) VALUES('$jsonString')";
 
 $mysqli->query($stmt);
 
-echo json_encode(var_dump($json_object));
+echo $mysqli->insert_id;
+
+//echo json_encode(var_dump($json_object));
 
 // $stmt->bind_param('s', $json_object);
 // if($stmt->execute()){

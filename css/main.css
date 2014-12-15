@@ -44,7 +44,7 @@ input[type="button"], input[type="submit"], input[type="reset"] {
   -webkit-appearance: none; }
 
 html {
-  font-size: 24px;
+  font-size: 20px;
   -webkit-font-smoothing: antialiased;
   text-align: center; }
 
@@ -102,7 +102,6 @@ button, .btn {
   color: #57986e;
   background: transparent;
   outline: 0;
-  cursor: pointer;
   margin: 0 0.5rem;
   line-height: 1.3rem;
   font-size: .9rem; }
@@ -132,6 +131,7 @@ button, .btn {
     color: white; }
 
 .record {
+  cursor: url(../images/cursor/hover.png), auto !important;
   display: inline-block; }
 
 .rec-outer {
@@ -139,7 +139,8 @@ button, .btn {
   width: 54px;
   height: 54px;
   border-radius: 50%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  cursor: url(../images/cursor/hover.png), auto !important; }
 
 .rec-inner {
   background: #ab3434;
@@ -149,14 +150,20 @@ button, .btn {
   margin: 0 auto;
   position: relative;
   top: 50%;
-  transform: translateY(-50%); }
+  transform: translateY(-50%);
+  cursor: url(../images/cursor/hover.png), auto !important; }
 
-a:hover {
-  cursor: pointer; }
+.record:hover .rec-inner {
+  width: 44px;
+  height: 44px;
+  cursor: url(../images/cursor/hover.png), auto !important; }
 
 .svg-button {
   display: inline-block;
   vertical-align: middle; }
+
+.temp a:hover {
+  cursor: url(../images/cursor/hover.png), auto !important; }
 
 .start {
   background: url(../images/start/start.svg) no-repeat center center;
@@ -325,6 +332,64 @@ a:hover {
   height: 47px; }
   .preview-next:hover, .preview-next.btn-enabled {
     background: url(../images/soundboard/next-hover.svg) no-repeat center center; }
+
+.next-bg {
+  background: url(../images/change-bg/next-bg.svg) no-repeat center center;
+  width: 115px;
+  height: 47px; }
+  .next-bg:hover, .next-bg.btn-enabled {
+    background: url(../images/change-bg/next-bg-hover.svg) no-repeat center center; }
+
+.prev-bg {
+  background: url(../images/change-bg/prev-bg.svg) no-repeat center center;
+  width: 114px;
+  height: 48px; }
+  .prev-bg:hover, .prev-bg.btn-enabled {
+    background: url(../images/change-bg/prev-bg-hover.svg) no-repeat center center; }
+
+.done {
+  background: url(../images/change-bg/done.svg) no-repeat center center;
+  width: 114px;
+  height: 118px; }
+  .done:hover, .done.btn-enabled {
+    background: url(../images/change-bg/done-hover.svg) no-repeat center center; }
+
+.next-greeting {
+  background: url(../images/greetings/next-greeting.svg) no-repeat center center;
+  width: 42px;
+  height: 47px;
+  float: right; }
+  .next-greeting:hover, .next-greeting.btn-enabled {
+    background: url(../images/greetings/next-greeting-hover.svg) no-repeat center center; }
+
+.prev-greeting {
+  background: url(../images/greetings/prev-greeting.svg) no-repeat center center;
+  width: 41px;
+  height: 46px;
+  float: left; }
+  .prev-greeting:hover, .prev-greeting.btn-enabled {
+    background: url(../images/greetings/prev-greeting-hover.svg) no-repeat center center; }
+
+.make-your-own {
+  background: url(../images/card/make-your-own.svg) no-repeat center center;
+  width: 249px;
+  height: 57px; }
+  .make-your-own:hover, .make-your-own.btn-enabled {
+    background: url(../images/card/make-your-own-hover.svg) no-repeat center center; }
+
+.share-twitter {
+  background: url(../images/card/share-twitter.svg) no-repeat center center;
+  width: 52px;
+  height: 48px; }
+  .share-twitter:hover, .share-twitter.btn-enabled {
+    background: url(../images/card/share-twitter-hover.svg) no-repeat center center; }
+
+.share-fb {
+  background: url(../images/card/share-fb.svg) no-repeat center center;
+  width: 51px;
+  height: 48px; }
+  .share-fb:hover, .share-fb.btn-enabled {
+    background: url(../images/card/share-fb-hover.svg) no-repeat center center; }
 
 .m0 {
   margin: 0; }
@@ -517,9 +582,12 @@ html, body {
   width: 100%;
   height: 100%; }
 
+a:hover {
+  cursor: url(../images/cursor/hover.png), auto !important; }
+
 .wrapper {
   width: 90%;
-  max-width: 1100px;
+  max-width: 900px;
   margin: 0 auto; }
   .wrapper p {
     width: 65%;
@@ -527,18 +595,34 @@ html, body {
 
 .toolbar {
   position: fixed;
-  width: 100%;
+  width: auto;
+  left: 0;
   bottom: 0;
   z-index: 1;
-  background: #252525; }
+  margin: 0 auto;
+  width: 100%; }
+
+.tools {
+  background: url(../images/soundboard/toolbar.svg);
+  width: 300px;
+  background-size: cover;
+  margin: 0 auto; }
+
+.tempo {
+  line-height: 1; }
+
+.controls > div {
+  display: inline-block;
+  vertical-align: middle; }
 
 .builder {
   margin-bottom: 140px; }
 
 .progress-bar {
-  width: 100%;
-  background: #303030;
-  height: 8px; }
+  width: 92%;
+  background: #000;
+  height: 8px;
+  margin: 0 auto; }
   .progress-bar .current-progress {
     background: #ab3434;
     height: 8px;
@@ -609,6 +693,12 @@ hr {
 .float-none {
   float: none; }
 
+.display-inline-block {
+  display: inline-block; }
+
+.vertical-middle {
+  vertical-align: middle; }
+
 body {
   background: #89cde0; }
 
@@ -646,7 +736,7 @@ body {
 .modal {
   z-index: 7;
   padding: 50px;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -659,9 +749,43 @@ body {
   height: 203px;
   margin-top: -230px;
   position: relative;
-  z-index: 9;
+  z-index: 10;
   -webkit-animation: drop-in 2s ease forwards;
   animation: drop-in 2s ease forwards; }
+
+.card-bg {
+  z-index: 8;
+  background: #fff;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  position: absolute; }
+  .card-bg .screen-content {
+    z-index: 10; }
+
+.bg-overlay {
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.7);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  position: fixed; }
+
+.greetings {
+  width: 100%;
+  height: 100%;
+  margin-top: 100px; }
+
+.greeting-selectors {
+  width: 90%;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
 
 @-webkit-keyframes drop-in {
   0% {
@@ -680,7 +804,7 @@ body {
 .logo {
   background: url(../images/themerrymaker.svg) no-repeat top center;
   width: 100%;
-  height: 780px;
+  height: 500px;
   background-size: contain;
   margin-top: 100px; }
 

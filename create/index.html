@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src="//use.typekit.net/dlk2duf.js"></script>
+        <script>try{Typekit.load();}catch(e){}</script>
+
+        <link rel="stylesheet" href="../css/main.css">
+    </head>
+    <body>
+
+    <div data-loading class="screen loading">
+        <div class="screen-content wrapper">
+            <img src="../images/loader.gif">
+            <div data-loading-text>Images</div>
+        </div>
+    </div>
+
+    <header>
+        <div class="ornaments"></div>
+    </header>
+
+    <section>
+        <div data-start-screen class="screen start-screen hidden">
+            <div class="screen-content wrapper">
+                <div class="logo"></div>
+
+                <p>This year, we’re putting the magic of Christmas back in your hands with The Merry Maker! Just choose the music, sound effects, visuals and holiday message you like, and then enter that special someone. Once they see yours, they can do it too! It’s a ho ho ho lot of fun!</p>
+
+                <p><a data-get-started class="svg-button start"></a>
+                <a data-instructions class="svg-button how-to"></a></p>
+            </div>
+        </div>
+    </section>
+
+    <div data-overlay class="overlay hidden"></div>
+    <div data-preview class="modal hidden">
+        <div data-preview-loader>
+            <img src="../images/loader-white.gif">
+            <div data-preview-loading-text>Loading preview</div>
+        </div>
+        <div data-preview-content class="hidden">
+            <img src="../images/soundboard/check-it-twice.svg" alt="Check it twice"><br/>
+            <p>Here's what your recording sounds like.<br/>
+            What do you think?</p>
+            <a data-restart class="svg-button restart"></a>
+            <a data-preview-next class="svg-button preview-next"></a>
+        </div>
+    </div>
+
+    <section data-builder class="builder hidden">
+        <div class="wrapper">
+            <img src="../images/soundboard/choose-a-beat.svg" alt="Choose a Beat">
+            <div class="grid">
+                <div class="col-1-4">
+                    <a data-beat-one class="svg-button wrap-beat"></a>
+                </div>
+                <div class="col-1-4">
+                    <a data-beat-two class="svg-button slay-music"></a>
+                </div>
+                <div class="col-1-4">
+                    <a data-beat-three class="svg-button indie-clause"></a>
+                </div>
+                <div class="col-1-4">
+                    <a data-beat-four class="svg-button drumkitmas"></a>
+                </div>
+            </div>
+
+            <img src="../images/soundboard/choose-a-lead.svg" alt="Choose a Lead">
+            <div class="grid">
+                <div class="col-1-4">
+                    <a data-lead-one class="svg-button elves-2-men"></a>
+                </div>
+                <div class="col-1-4">
+                    <a data-lead-two class="svg-button smells-like"></a>
+                </div>
+                <div class="col-1-4">
+                    <a data-lead-three class="svg-button mr-tannen"></a>
+                </div>
+                <div class="col-1-4">
+                    <a data-lead-four class="svg-button all-i-want"></a>
+                </div>
+            </div>
+
+            <img src="../images/soundboard/add-some-spice.svg" alt="Add Some Spice">
+            <div class="grid">
+                <div class="col-1-4">
+                    <a data-sample-one class="svg-button merry-christmas"></a>
+                </div>
+                <div class="col-1-4">
+                    <a data-sample-two class="svg-button bah-humbug"></a>
+                </div>
+                <div class="col-1-4">
+                    <a data-sample-three class="svg-button ho-ho-ho"></a>
+                </div>
+                <div class="col-1-4">
+                    <a data-sample-four class="svg-button fa-la-la"></a>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="col-1-4">
+                    <a data-sample-five class="svg-button sleigh-bells"></a>
+                </div>
+                <div class="col-1-4">
+                    <a data-sample-six class="svg-button fog-horn"></a>
+                </div>
+                <div class="col-1-4">
+                    <a data-sample-seven class="svg-button gun-shot"></a>
+                </div>
+                <div class="col-1-4">
+                    <a data-sample-eight class="svg-button youll-shoot"></a>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="col-1-4">
+                    <a data-sample-nine class="svg-button santa-omg"></a>
+                </div>
+                <div class="col-1-4">
+                    <a data-sample-ten class="svg-button joy-to-the"></a>
+                </div>
+                <div class="col-1-4">
+                    <a data-sample-eleven class="svg-button put-that-cookie"></a>
+                </div>
+                <div class="col-1-4">
+                    <a data-sample-twelve class="svg-button merry-xmas-you"></a>
+                </div>
+            </div>
+        </div>
+
+        <div data-toolbar class="toolbar">
+            <div class="tools">
+                <div class="controls pt1 pb1">
+                    <div class="tempo">
+                        <a data-up-tempo><img src="../images/soundboard/up-tempo.svg"></a><br/>
+                        <div data-current-tempo>120</div>
+                        <a data-down-tempo><img src="../images/soundboard/down-tempo.svg"></a>
+                    </div>
+                    <div data-record class="record pl1">
+                        <div class="rec-outer display-inline-block vertical-middle">
+                            <div class="rec-inner"></div>
+                        </div>
+                        <span data-record-label class="display-inline-block vertical-middle">REC</span>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div data-current-progress class="current-progress"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section data-card-bg class="card-bg screen hidden">
+        <div class="screen-content wrapper">
+            <div class="greetings">
+                <img data-greeting src="" height="350">
+                <div class="greeting-selectors">
+                    <a data-prev-greeting class="prev-greeting"></a>
+                    <a data-next-greeting class="next-greeting"></a>
+                </div>
+            </div>
+            <div class="display-inline-block vertical-middle pr2">
+                <img src="../images/change-bg/change-bg.svg" alt="Change Background"><br/>
+                <a data-prev-bg class="svg-button prev-bg"></a>
+                <a data-next-bg class="svg-button next-bg"></a>
+            </div>
+            <div class="display-inline-block vertical-middle pl2">
+                <a data-done class="svg-button done"></a>
+            </div>
+        </div>
+        <div class="bg-overlay"></div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="../js/vendor/Tone.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/ui.js"></script>
+    </body>
+</html>
