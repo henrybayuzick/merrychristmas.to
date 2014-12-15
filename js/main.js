@@ -2,11 +2,11 @@
 console.log("Transport: "+Tone.Transport.state);
 
 // Transport time in console
-var seconds = Tone.Transport.setInterval(function(){
+Tone.Transport.setInterval(function(){
   console.log("Transport time: "+Tone.Transport.getTransportTime());
 },"1:0:0")
 
-var ms = Tone.Transport.setInterval(function(){
+Tone.Transport.setInterval(function(){
   console.log("Transport time: "+Tone.Transport.getTransportTime());
 },"0:0:1")
 // End debug
@@ -75,57 +75,57 @@ var curentWidth               = 0;
 
 var cardPreview = false;
 
-// Metronome
-var metronomeState = "off";
+// // Metronome
+// var metronomeState = "off";
 
-var metronome = new Tone.MultiSampler({
-  "high" : audioDirectory + "metronome/logic1.wav",
-  "low" : audioDirectory + "metronome/logic2.wav"
-});
+// var metronome = new Tone.MultiSampler({
+//   "high" : audioDirectory + "metronome/logic1.wav",
+//   "low" : audioDirectory + "metronome/logic2.wav"
+// });
 
-metronome.toMaster();
-metronome.setVolume(-200);
+// metronome.toMaster();
+// metronome.setVolume(-200);
 
-function createMetronomoScore() {
-  var high = [];
-  var low = [];
+// function createMetronomoScore() {
+//   var high = [];
+//   var low = [];
 
-  for (var i = 0; i <= bars - 1; i++) {
-    high.push(i + ":0:0");
-    Tone.Transport.setTimeline(function(time){
-      metronome.triggerAttack("high", time);
-    }, i + ":0:0");
+//   for (var i = 0; i <= bars - 1; i++) {
+//     high.push(i + ":0:0");
+//     Tone.Transport.setTimeline(function(time){
+//       metronome.triggerAttack("high", time);
+//     }, i + ":0:0");
 
-    for (var k = 1; k <= 3; k ++) {
-      low.push( i + ":" + k + ":0");
-      Tone.Transport.setTimeline(function(time){
-        metronome.triggerAttack("low", time);
-      }, i + ":" + k + ":0");
-    }
-  }
+//     for (var k = 1; k <= 3; k ++) {
+//       low.push( i + ":" + k + ":0");
+//       Tone.Transport.setTimeline(function(time){
+//         metronome.triggerAttack("low", time);
+//       }, i + ":" + k + ":0");
+//     }
+//   }
 
-  var metronomeScore = {
-    "high" : high,
-    "low" : low
-  };
+//   var metronomeScore = {
+//     "high" : high,
+//     "low" : low
+//   };
 
-  return metronomeScore;
-}
+//   return metronomeScore;
+// }
 
-var metronomeScore = Tone.Note.parseScore(createMetronomoScore());
+// var metronomeScore = Tone.Note.parseScore(createMetronomoScore());
 
-function toggleMetronome() {
-  if (metronomeState == "off") {
-      metronome.setVolume(0);
-      metronomeState = "on";
-      $('[data-click]').addClass('btn-enabled');
-  }
-  else {
-    metronome.setVolume(-200);
-    metronomeState = "off";
-    $('[data-click]').removeClass('btn-enabled');
-  }
-}
+// function toggleMetronome() {
+//   if (metronomeState == "off") {
+//       metronome.setVolume(0);
+//       metronomeState = "on";
+//       $('[data-click]').addClass('btn-enabled');
+//   }
+//   else {
+//     metronome.setVolume(-200);
+//     metronomeState = "off";
+//     $('[data-click]').removeClass('btn-enabled');
+//   }
+// }
 
 // Beats
 var beatOnePlayer = new Tone.Player();
@@ -249,7 +249,6 @@ var leadFour = {
   "off_score" : []
 }
 
-
 // Players
 var numberOfBeats = 4;
 var numberOfLeads = 4;
@@ -329,10 +328,14 @@ function togglePlayer(object, toggle) {
   }
 }
 
+var startIntervals = [];
+var stopIntervals = [];
 function setPlayers (object, player) {
   object.player = player;
-  Tone.Transport.setTimeline(function(time){ player.start(time); }, "0:0:0");
-  Tone.Transport.setTimeline(function(time){ player.stop(time); }, bars-2 + ":3:0"); // Make sure it is stopped right before you start it again
+  startInterval = Tone.Transport.setTimeline(function(){ player.start(); }, "0:0:0");
+  stopInterval = Tone.Transport.setTimeline(function(){ player.stop(); }, bars-2 + ":3:0"); // Make sure it is stopped right before you start it again
+  startIntervals.push(startInterval);
+  stopIntervals.push(stopInterval);
   player.toMaster();
   player.setVolume(object.volume);
 }
@@ -351,7 +354,7 @@ function stopAllPlayers() {
 
 var audioLoaded = 0;
 function updateLoadingBar() {
-  console.log(cardPreview);
+  console.log('updating loading board');
   if (cardPreview == true) {
     audioLoaded++;
     $('[data-preview-loading-text]').text("Creating preview.");
@@ -831,9 +834,10 @@ function setPlayerTimelines (object) {
 function previewCard() {
   console.log('Previewing card at ' + currentBPM + " BPM");
 
-  // Make sure timeline is clear and everything is stopped
+  //Make sure timeline is clear and everything is stopped
+  //stopEverything();
   Tone.Transport.clearTimelines();
-  stopEverything();
+  
 
   // Set BPM from data and make sure transport is at 0:0:0
   Tone.Transport.setBpm(currentBPM);
