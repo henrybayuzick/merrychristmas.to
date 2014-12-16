@@ -868,3 +868,29 @@ body {
 
   100% {
     top: -200px; } }
+
+.firefox {
+  display: none; }
+
+.ie {
+  display: none; }
+
+@-moz-document url-prefix() {
+  .not-firefox {
+    display: none; }
+
+  .firefox {
+    display: block; }
+
+  .unsupported {
+    display: block; } }
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .not-ie {
+    display: none; }
+
+  .ie {
+    display: block; }
+
+  .unsupported {
+    display: block; } }

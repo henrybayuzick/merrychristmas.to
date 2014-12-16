@@ -3,21 +3,29 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>The Merry Maker - Let’s Get Merry</title>
+        <title>The Merry Maker - Let's Get Merry</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <script src="//use.typekit.net/dlk2duf.js"></script>
         <script>try{Typekit.load();}catch(e){}</script>
 
-        <link rel="stylesheet" href="../css/main.css">
+        <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+
+        <link rel="stylesheet" href="/css/main.css">
+
+        <!--[if IE]>
+            <link rel="stylesheet" type="text/css" href="/css/ie.css" />
+        <![endif]-->
+
     </head>
     <body>
 
-    <div data-loading class="screen loading">
+    <div data-loading class="screen loading not-firefox not-ie">
         <div class="screen-content wrapper">
-            <img src="../images/loader.gif">
-            <div data-loading-text>Images</div>
+            <img src="/images/loader.gif">
+            <div data-loading-text>Please wait</div>
         </div>
     </div>
 
@@ -26,14 +34,22 @@
     </header>
 
     <section>
-        <div data-start-screen class="screen start-screen hidden">
+        <div data-start-screen class="screen start-screen hidden unsupported">
             <div class="screen-content wrapper">
                 <div class="logo"></div>
 
-                <p data-intro-text>This year, we’re putting the magic of Christmas back in your hands with The Merry Maker! Just choose the music, sound effects, visuals and holiday message you like, and then share it with that special someone. Once they see yours, they can do it too! It’s a ho ho ho lot of fun!</p>
+                <div class="not-firefox not-ie">
+                    <p data-intro-text>Behold The Merry Maker™. The world’s first Christmas-sound-board-animated-gif-audio-visual-holiday-greeting combinator. It summons all the powers of the holiday season and gives you complete creative control. Our technicians figured there are 7,987,120,418 combinations of greetings, so everyone on Earth can make one. Get making. The more, the merrier.</p>
 
-                <p><a data-get-started class="svg-button start"></a>
-                <a data-instructions class="svg-button how-to"></a></p>
+                    <p><a data-get-started class="svg-button start"></a>
+                    <a data-instructions class="svg-button how-to"></a></p>
+                </div>
+                <div class="firefox">
+                    <p>Bah Humbug! Your browser’s having some trouble getting into the spirit of the season and is incompatible with The Merry Maker. To create, record and send your card without any issues, switch over to the latest version of <a href="http://www.google.com/chrome/" target="_blank">Google Chrome</a> or <a href="https://www.apple.com/safari/" target="_blank">Safari</a>.</p>
+                </div>
+                <div class="ie">
+                    <p>Ho Ho No! Unfortunately, your browser is not compatible with our Christmas spirit. To get the full Merry Maker experience, please switch over to the latest version of <a href="http://www.google.com/chrome/" target="_blank">Google Chrome</a> or <a href="https://www.apple.com/safari/" target="_blank">Safari</a>.</p>
+                </div>
                 <div class="start-credit pt2 pb2">
                     <a href="http://www.redsquareagency.com" target="_blank">A Red Square Agency Project</a>
                 </div>
@@ -44,11 +60,11 @@
     <div data-overlay class="overlay hidden"></div>
     <div data-preview class="modal hidden">
         <div data-preview-loader>
-            <img src="../images/loader-white.gif">
+            <img src="/images/loader-white.gif">
             <div data-preview-loading-text>Loading preview</div>
         </div>
         <div data-preview-content class="hidden">
-            <img src="../images/soundboard/check-it-twice.svg" alt="Check it twice"><br/>
+            <img src="/images/soundboard/check-it-twice.svg" alt="Check it twice"><br/>
             <p>Here's what your recording sounds like.<br/>
             What do you think?</p>
             <a data-restart class="svg-button restart"></a>
@@ -58,7 +74,7 @@
 
     <section data-builder class="builder hidden">
         <div class="wrapper">
-            <img src="../images/soundboard/choose-a-beat.svg" alt="Choose a Beat">
+            <img src="/images/soundboard/choose-a-beat.svg" alt="Choose a Beat">
             <div class="grid">
                 <div class="col-1-4">
                     <a data-beat-one class="svg-button wrap-beat"></a>
@@ -74,7 +90,7 @@
                 </div>
             </div>
 
-            <img src="../images/soundboard/choose-a-lead.svg" alt="Choose a Lead">
+            <img src="/images/soundboard/choose-a-lead.svg" alt="Choose a Lead">
             <div class="grid">
                 <div class="col-1-4">
                     <a data-lead-one class="svg-button elves-2-men"></a>
@@ -90,7 +106,7 @@
                 </div>
             </div>
 
-            <img src="../images/soundboard/add-some-spice.svg" alt="Add Some Spice">
+            <img src="/images/soundboard/add-some-spice.svg" alt="Add Some Spice">
             <div class="grid">
                 <div class="col-1-4">
                     <a data-sample-one class="svg-button merry-christmas"></a>
@@ -141,9 +157,9 @@
             <div class="tools">
                 <div class="controls pt1 pb1">
                     <div class="tempo">
-                        <a data-up-tempo><img src="../images/soundboard/up-tempo.svg"></a><br/>
+                        <a data-up-tempo><img src="/images/soundboard/up-tempo.svg"></a><br/>
                         <div data-current-tempo>120</div>
-                        <a data-down-tempo><img src="../images/soundboard/down-tempo.svg"></a>
+                        <a data-down-tempo><img src="/images/soundboard/down-tempo.svg"></a>
                     </div>
                     <div data-record class="record pl1">
                         <div class="rec-outer display-inline-block vertical-middle">
@@ -167,7 +183,7 @@
                     <a data-next-greeting class="next-greeting"></a>
                 </div>
             <div class="display-inline-block vertical-middle pr2">
-                <img src="../images/change-bg/change-bg.svg" alt="Change Background"><br/>
+                <img src="/images/change-bg/change-bg.svg" alt="Change Background"><br/>
                 <a data-prev-bg class="svg-button prev-bg"></a>
                 <a data-next-bg class="svg-button next-bg"></a>
             </div>
@@ -178,10 +194,101 @@
         <div class="bg-overlay"></div>
     </section>
 
+    <div class="preload hidden">
+            <img src="/images/ornaments.svg">
+            <img src="/images/themerrymaker.svg">
+            <img src="/images/rsq.svg">
+            <img src="/images/gaming.svg">
+
+            <img src="/images/start/start.svg">
+            <img src="/images/start/start-hover.svg">
+            <img src="/images/start/how-to.svg">
+            <img src="/images/start/how-to-hover.svg">
+
+            <img src="/images/greetings/be-careful.svg">
+            <img src="/images/greetings/heres-to.svg">
+            <img src="/images/greetings/merry-christmas.svg">
+            <img src="/images/greetings/or-whatever.svg">
+
+            <img src="/images/greetings/next-greeting.svg">
+            <img src="/images/greetings/next-greeting-hover.svg">
+            <img src="/images/greetings/prev-greeting-hover.svg">
+            <img src="/images/greetings/prev-greeting.svg">
+
+            <img src="/images/change-bg/change-bg.svg">
+            <img src="/images/change-bg/done-hover.svg">
+            <img src="/images/change-bg/done.svg">
+            <img src="/images/change-bg/next-bg-hover.svg">
+            <img src="/images/change-bg/next-bg.svg">
+            <img src="/images/change-bg/prev-bg-hover.svg">
+            <img src="/images/change-bg/prev-bg.svg">
+
+            <img src="/images/soundboard/add-some-spice.svg">
+            <img src="/images/soundboard/all-i-want.svg">
+            <img src="/images/soundboard/all-i-want-hover.svg">
+            <img src="/images/soundboard/bah-humbug.svg">
+            <img src="/images/soundboard/bah-humbug-hover.svg">
+            <img src="/images/soundboard/check-it-twice.svg">
+            <img src="/images/soundboard/chimes.svg">
+            <img src="/images/soundboard/chimes-hover.svg">
+            <img src="/images/soundboard/choose-a-beat.svg">
+            <img src="/images/soundboard/choose-a-lead.svg">
+            <img src="/images/soundboard/down-tempo.svg">
+            <img src="/images/soundboard/drumkitmas.svg">
+            <img src="/images/soundboard/drumkitmas-hover.svg">
+            <img src="/images/soundboard/elves-2-men.svg">
+            <img src="/images/soundboard/elves-2-men-hover.svg">
+            <img src="/images/soundboard/fa-la-la.svg">
+            <img src="/images/soundboard/fa-la-la-hover.svg">
+            <img src="/images/soundboard/fog-horn.svg">
+            <img src="/images/soundboard/fog-horn-hover.svg">
+            <img src="/images/soundboard/ho-ho-ho.svg">
+            <img src="/images/soundboard/ho-ho-ho-hover.svg">
+            <img src="/images/soundboard/indie-clause.svg">
+            <img src="/images/soundboard/indie-clause-hover.svg">
+            <img src="/images/soundboard/joy-to-the.svg">
+            <img src="/images/soundboard/joy-to-the-hover.svg">
+            <img src="/images/soundboard/merry-christmas.svg">
+            <img src="/images/soundboard/merry-christmas-hover.svg">
+            <img src="/images/soundboard/merry-xmas-you.svg">
+            <img src="/images/soundboard/merry-xmas-you-hover.svg">
+            <img src="/images/soundboard/mr-tannen.svg">
+            <img src="/images/soundboard/mr-tannen-hover.svg">
+            <img src="/images/soundboard/next.svg">
+            <img src="/images/soundboard/next-hover.svg">
+            <img src="/images/soundboard/put-that-cookie.svg">
+            <img src="/images/soundboard/put-that-cookie-hover.svg">
+            <img src="/images/soundboard/restart.svg">
+            <img src="/images/soundboard/santa-omg.svg">
+            <img src="/images/soundboard/santa-omg-hover.svg">
+            <img src="/images/soundboard/slay-music.svg">
+            <img src="/images/soundboard/slay-music-hover.svg">
+            <img src="/images/soundboard/sleigh-bells.svg">
+            <img src="/images/soundboard/sleigh-bells-hover.svg">
+            <img src="/images/soundboard/smells-like.svg">
+            <img src="/images/soundboard/smells-like-hover.svg">
+            <img src="/images/soundboard/toolbar.svg">
+            <img src="/images/soundboard/up-tempo.svg">
+            <img src="/images/soundboard/wrap-beat.svg">
+            <img src="/images/soundboard/wrap-beat-hover.svg">
+            <img src="/images/soundboard/youll-shoot.svg">
+            <img src="/images/soundboard/youll-shoot-hover.svg">
+
+            <img src="http://media.giphy.com/media/xOhyfTrZZzfyM/giphy.gif">
+            <img src="http://media.giphy.com/media/OeoPXQPSzteiA/giphy.gif">
+            <img src="http://media.giphy.com/media/LJrMjb87w16q4/giphy.gif">
+            <img src="http://media.giphy.com/media/fKfz1mB6FexMY/giphy.gif">
+            <img src="http://media.giphy.com/media/10swQPVv0kvqp2/giphy.gif">
+            <img src="http://media.giphy.com/media/RRu9WYixQ7NEA/giphy.gif">
+            <img src="http://media.giphy.com/media/riIBhPjFxCbZe/giphy.gif">
+            <img src="http://media.giphy.com/media/5xtDaryAMLjvAyN4eiY/giphy.gif">
+            <img src="http://media.giphy.com/media/WhH6GrITyXVpC/giphy.gif">
+        </div>
+
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="../js/vendor/Tone.min.js"></script>
+    <script src="/js/vendor/Tone.min.js"></script>
     <script src="/js/vendor/waitForImages.js"></script>
-    <script src="../js/main.js"></script>
-    <script src="../js/ui.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/ui.js"></script>
     </body>
 </html>

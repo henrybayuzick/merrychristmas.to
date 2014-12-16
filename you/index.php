@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>The Merry Maker - Let’s Get Merry</title>
+		<title>The Merry Maker - Let's Get Merry</title>
 
 		<script src="//use.typekit.net/dlk2duf.js"></script>
         <script>try{Typekit.load();}catch(e){}</script>
 
         <link rel="stylesheet" href="/css/main.css">
+
+        <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+
 	</head>
 	<body>
 		<div data-card-id data-value="<?php if($_GET['you']) { echo $_GET['you']; } else { echo -1; } ?>"></div>
@@ -46,7 +50,7 @@
 	            <div class="mt3 mb3">
 	            	<a href="https://twitter.com/intent/tweet?url=<?php echo getUrl(); ?>&text=Merry Christmas!&hashtags=themerrymaker" target="_blank" data-share-twitter class="svg-button share-twitter"></a>
 	            	<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo getUrl(); ?>" target="_blank" data-share-fb class="svg-button share-fb"></a>
-	            	<a class="svg-button share-email" target="_blank" href="mailto:%20?subject=Merry Christmas!&body=<?php echo getUrl(); ?>"></a>
+	            	<a class="svg-button share-email" target="_blank" href="mailto:%20?subject=Make Your Christmas Merry!&body=I used The Merry Maker to make you a Christmas card! Check it out here: <?php echo getUrl(); ?>"></a>
 	            </div>
 	           	<div>
                 	<a href="/" data-make-your-own class="svg-button make-your-own"></a>
@@ -67,36 +71,33 @@
     	<div class="preload hidden">
 	        <img src="/images/ornaments.svg">
 	        <img src="/images/themerrymaker.svg">
-	        <img src="/images/start/start.svg">
-	        <img src="/images/start/start-hover.svg">
-	        <img src="/images/start/how-to.svg">
-	        <img src="/images/start/how-to-hover.svg">
-	        <img src="/images/soundboard/choose-a-beat.svg">
-	        <img src="/images/soundboard/choose-a-lead.svg">
-	        <img src="/images/soundboard/wrap-beat-hover.svg">
-	        <img src="/images/soundboard/slay-music-hover.svg">
-	        <img src="/images/soundboard/indie-clause-hover.svg">
-	        <img src="/images/soundboard/drumkitmas-hover.svg">
-	        <img src="/images/soundboard/elves-2-men-hover.svg">
-	        <img src="/images/soundboard/smells-like-hover.svg">
-	        <img src="/images/soundboard/mr-tannen-hover.svg">
-	        <img src="/images/soundboard/all-i-want-hover.svg">
-	        <img src="/images/soundboard/bah-humbug-hover.svg">
-	        <img src="/images/soundboard/put-that-cookie-hover.svg">
-	        <img src="/images/soundboard/merry-xmas-you-hover.svg">
-	        <img src="/images/soundboard/joy-to-the-hover.svg">
-	        <img src="/images/soundboard/sleigh-bells-hover.svg">
-	        <img src="/images/soundboard/fa-la-la-hover.svg">
-	        <img src="/images/soundboard/fog-horn-hover.svg">
-	        <img src="/images/soundboard/gun-shot-hover.svg">
-	        <img src="/images/soundboard/ho-ho-ho-hover.svg">
-	        <img src="/images/soundboard/merry-christmas-hover.svg">
-	        <img src="/images/soundboard/youll-shoot-hover.svg">
-	        <img src="/images/soundboard/santa-omg-hover.svg">
-	        <img src="/images/soundboard/next-hover.svg">
-	        <img src="/images/change-bg/next-bg-hover.svg">
-	        <img src="/images/change-bg/prev-bg-hover.svg">
-	        <img src="/images/change-bg/done-hover.svg">
+	        <img src="/images/rsq.svg">
+	        <img src="/images/gaming.svg">
+
+	        <img src="/images/greetings/be-careful.svg">
+	        <img src="/images/greetings/heres-to.svg">
+	        <img src="/images/greetings/merry-christmas.svg">
+	        <img src="/images/greetings/or-whatever.svg">
+
+	        <img src="/images/card/close.svg">
+	        <img src="/images/card/make-your-own-hover.svg">
+	        <img src="/images/card/make-your-own.svg">
+	        <img src="/images/card/share-email-hover.svg">
+	        <img src="/images/card/share-email.svg">
+	        <img src="/images/card/share-fb-hover.svg">
+	        <img src="/images/card/share-fb.svg">
+	        <img src="/images/card/share-twitter-hover.svg">
+	        <img src="/images/card/share-twitter.svg">
+
+			<img src="http://media.giphy.com/media/xOhyfTrZZzfyM/giphy.gif">
+			<img src="http://media.giphy.com/media/OeoPXQPSzteiA/giphy.gif">
+			<img src="http://media.giphy.com/media/LJrMjb87w16q4/giphy.gif">
+			<img src="http://media.giphy.com/media/fKfz1mB6FexMY/giphy.gif">
+			<img src="http://media.giphy.com/media/10swQPVv0kvqp2/giphy.gif">
+			<img src="http://media.giphy.com/media/RRu9WYixQ7NEA/giphy.gif">
+			<img src="http://media.giphy.com/media/riIBhPjFxCbZe/giphy.gif">
+			<img src="http://media.giphy.com/media/5xtDaryAMLjvAyN4eiY/giphy.gif">
+			<img src="http://media.giphy.com/media/WhH6GrITyXVpC/giphy.gif">
     	</div>
 
 		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

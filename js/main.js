@@ -11,15 +11,15 @@ Tone.Transport.setInterval(function(){
 },"0:0:1")
 // End debug
 
-// // If not a card, redirect to create page
-// if ($('[data-card-id]').data('value') == -1) {
-//   window.location.href = "/create"
-// }
-
+var imagesLoaded = false;
 $('body').waitForImages(function() {
-    console.log('All images have loaded.');
+    imagesLoaded = true;
+    if (audioLoaded == 8) {
+      $('[data-loading]').addClass('hidden');
+      $('[data-start-screen]').removeClass('hidden');
+    }
 }, function(loaded, count, success) {
-   console.log(loaded + ' of ' + count + ' images has ' + (success ? 'loaded' : 'failed to load') +  '.');
+   $('[data-loading-text]').text('Images ' + loaded + '/' + count);
    $(this).addClass('loaded');
 });
 
@@ -366,11 +366,10 @@ function stopAllPlayers() {
 
 var audioLoaded = 0;
 function updateLoadingBar() {
-  console.log('updating loading board');
   if (cardPreview == true) {
     audioLoaded++;
     $('[data-preview-loading-text]').text("Creating preview.");
-    if (audioLoaded == 8) {
+    if ((audioLoaded == 8) && (imagesLoaded == true)) {
       $('[data-preview-loader]').addClass('hidden');
       $('[data-preview-content]').removeClass('hidden');
       if (startScreen != true) {
@@ -381,9 +380,8 @@ function updateLoadingBar() {
   else {
     audioLoaded++;
     $('[data-loading-text]').text("Audio " + audioLoaded + "/8");
-    if (audioLoaded == 8) {
+    if ((audioLoaded == 8) && (imagesLoaded == true)) {
       $('[data-loading]').addClass('hidden');
-
       if (startScreen != true) {
         Tone.Transport.start();
       } else {

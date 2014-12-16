@@ -1,0 +1,11 @@
+.not-ie{
+	display:none;
+}
+
+.ie{
+	display:block;
+}
+
+.unsupported {
+	display:block;
+}
