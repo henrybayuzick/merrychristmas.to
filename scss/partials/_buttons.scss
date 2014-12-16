@@ -21,7 +21,6 @@ button, .btn {
 	}
 
 	&.btn-gray {
-		//background:$red;
 		border:2px solid $red;
 		color:$red;
 
@@ -55,8 +54,12 @@ button, .btn {
 	}
 }
 
+a:hover {
+	cursor: pointer;
+}
+
 .record {
-	cursor: url(../images/cursor/hover.png), auto !important;
+	cursor: pointer;
 	display:inline-block;
 }
 
@@ -66,7 +69,6 @@ button, .btn {
 	height:54px;
 	border-radius: 50%;
 	margin:0 auto;
-	cursor: url(../images/cursor/hover.png), auto !important;
 }
 
 .rec-inner {
@@ -79,13 +81,11 @@ button, .btn {
   	top: 50%;
   	-webkit-transform: translateY(-50%);
   	        transform: translateY(-50%);
-  	cursor: url(../images/cursor/hover.png), auto !important;
 }
 
 .record:hover .rec-inner {
 	width:44px;
 	height:44px;
-	cursor: url(../images/cursor/hover.png), auto !important;
 }
 
 .svg-button {
@@ -93,8 +93,8 @@ button, .btn {
 	vertical-align: middle;
 }
 
-.temp a:hover {
-	cursor: url(../images/cursor/hover.png), auto !important;
+.tempo a:hover {
+	cursor: pointer;
 }
 
 // Start
@@ -115,7 +115,7 @@ button, .btn {
 	height:57px;
 	margin-left:10px;
 
-	&:hover {
+	&:hover, &.btn-enabled {
 		background:url(../images/start/how-to-hover.svg) no-repeat center center;
 	}
 }
@@ -241,13 +241,13 @@ button, .btn {
 	}
 }
 
-.gun-shot {
-	background:url(../images/soundboard/gun-shot.svg) no-repeat center center;
+.chimes {
+	background:url(../images/soundboard/chimes.svg) no-repeat center center;
 	width:207px;
 	height:102px;
 
 	&:hover, &.btn-enabled {
-		background:url(../images/soundboard/gun-shot-hover.svg) no-repeat center center;
+		background:url(../images/soundboard/chimes-hover.svg) no-repeat center center;
 	}
 }
 
@@ -421,4 +421,36 @@ button, .btn {
 	&:hover, &.btn-enabled {
 		background:url(../images/card/share-fb-hover.svg) no-repeat center center;
 	}
+}
+
+.share-email {
+	background:url(../images/card/share-email.svg) no-repeat center center;
+	width:51px;
+	height:48px;
+
+	&:hover, &.btn-enabled {
+		background:url(../images/card/share-email-hover.svg) no-repeat center center;
+	}
+}
+
+.close {
+	background:url(../images/card/close.svg) no-repeat center center;
+	width:18px;
+	height:24px;
+	position:absolute;
+	right:20px;
+	top:15px;
+	z-index:400;
+}
+
+.rsq {
+	background:url(../images/rsq.svg) no-repeat center center;
+	width:82px;
+	height:43px;
+}
+
+.gaming {
+	background:url(../images/gaming.svg) no-repeat center center;
+	width:194px;
+	height:25px;
 }

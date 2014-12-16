@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>The Merry Maker - Let’s Get Merry</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,10 +30,13 @@
             <div class="screen-content wrapper">
                 <div class="logo"></div>
 
-                <p>This year, we’re putting the magic of Christmas back in your hands with The Merry Maker! Just choose the music, sound effects, visuals and holiday message you like, and then enter that special someone. Once they see yours, they can do it too! It’s a ho ho ho lot of fun!</p>
+                <p data-intro-text>This year, we’re putting the magic of Christmas back in your hands with The Merry Maker! Just choose the music, sound effects, visuals and holiday message you like, and then share it with that special someone. Once they see yours, they can do it too! It’s a ho ho ho lot of fun!</p>
 
                 <p><a data-get-started class="svg-button start"></a>
                 <a data-instructions class="svg-button how-to"></a></p>
+                <div class="start-credit pt2 pb2">
+                    <a href="http://www.redsquareagency.com" target="_blank">A Red Square Agency Project</a>
+                </div>
             </div>
         </div>
     </section>
@@ -111,7 +114,7 @@
                     <a data-sample-six class="svg-button fog-horn"></a>
                 </div>
                 <div class="col-1-4">
-                    <a data-sample-seven class="svg-button gun-shot"></a>
+                    <a data-sample-seven class="svg-button chimes"></a>
                 </div>
                 <div class="col-1-4">
                     <a data-sample-eight class="svg-button youll-shoot"></a>
@@ -158,13 +161,11 @@
 
     <section data-card-bg class="card-bg screen hidden">
         <div class="screen-content wrapper">
-            <div class="greetings">
-                <img data-greeting src="" height="350">
-                <div class="greeting-selectors">
+            <div data-greeting class="greetings"></div>
+            <div class="greeting-selectors">
                     <a data-prev-greeting class="prev-greeting"></a>
                     <a data-next-greeting class="next-greeting"></a>
                 </div>
-            </div>
             <div class="display-inline-block vertical-middle pr2">
                 <img src="../images/change-bg/change-bg.svg" alt="Change Background"><br/>
                 <a data-prev-bg class="svg-button prev-bg"></a>
@@ -179,6 +180,7 @@
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="../js/vendor/Tone.min.js"></script>
+    <script src="/js/vendor/waitForImages.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/ui.js"></script>
     </body>

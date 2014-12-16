@@ -1,6 +1,21 @@
 // Global
 startScreen = true;
 
+
+var instructionsToggled = false;
+$('[data-instructions]').click(function(){
+  if (instructionsToggled == true) {
+    $('[data-intro-text]').text('This year, we’re putting the magic of Christmas back in your hands with The Merry Maker! Just choose the music, sound effects, visuals and holiday message you like, and then enter that special someone. Once they see yours, they can do it too! It’s a ho ho ho lot of fun!');
+    instructionsToggled = false;
+    $('[data-instructions]').removeClass('btn-enabled');
+  }
+  else {
+    $('[data-intro-text]').text("Start by choosing a beat and a lead then spice it up with sound effects and samples. Once you're ready, be sure to hit record, otherwise you're just pushing buttons. The Beats and Leads can be toggled on and off for more unique musical combinations. Once you've recorded something you like, choose a background and greeting  from our premade selection. All that's left is to share it!");
+    instructionsToggled = true;
+    $('[data-instructions]').addClass('btn-enabled');
+  }
+});
+
 // Start button
 $('[data-get-started]').click(function(){
 	$('[data-start-screen]').addClass('hidden');
@@ -21,7 +36,7 @@ function submitData() {
     url: "/build.php",
     data: finalScore,
     success: function(data) {
-      window.location.href = "/?id=" + data;
+      window.location.href = "/you/" + data + "/";
     }
   });
 }

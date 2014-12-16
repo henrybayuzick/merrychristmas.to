@@ -108,3 +108,36 @@ function createCard() {
   // Set all the players at current BPM
   changeTempo(+currentBPM);
 }
+
+var muted = false;
+$('[data-mute]').click(function(){
+  if (muted == false) {
+    Tone.Master.mute(1)
+    muted = true;
+    $(this).text('Unmute');
+  }
+  else {
+    Tone.Master.mute(0)
+    muted = false;
+    $(this).text('Mute');
+  }
+});
+
+$(document).mouseup(function (e) {
+    var container = $('[data-rationale-modal]');
+
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        $('[data-rationale-modal]').addClass('hidden');
+        $('[data-overlay]').addClass('hidden');
+    }
+});
+
+$('[data-close-modal]').click(function() {
+  $('[data-rationale-modal]').addClass('hidden');
+  $('[data-overlay]').addClass('hidden');
+});
+
+$('[data-rationale]').click(function(){
+  $('[data-rationale-modal]').removeClass('hidden');
+  $('[data-overlay]').removeClass('hidden');
+});

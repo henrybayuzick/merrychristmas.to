@@ -77,15 +77,18 @@ h3 {
   text-transform: uppercase; }
 
 a {
-  color: #ab3434;
+  color: black;
   text-decoration: none;
   transition: color 0.3s ease;
   -webkit-transition: color 0.3s ease; }
   a:hover {
-    color: #942929; }
+    color: black; }
 
 p {
   margin: 1rem 0; }
+
+p a {
+  text-decoration: underline; }
 
 .toolbar {
   color: white; }
@@ -130,8 +133,11 @@ button, .btn {
     background: #57986e;
     color: white; }
 
+a:hover {
+  cursor: pointer; }
+
 .record {
-  cursor: url(../images/cursor/hover.png), auto !important;
+  cursor: pointer;
   display: inline-block; }
 
 .rec-outer {
@@ -139,8 +145,7 @@ button, .btn {
   width: 54px;
   height: 54px;
   border-radius: 50%;
-  margin: 0 auto;
-  cursor: url(../images/cursor/hover.png), auto !important; }
+  margin: 0 auto; }
 
 .rec-inner {
   background: #ab3434;
@@ -151,20 +156,18 @@ button, .btn {
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  cursor: url(../images/cursor/hover.png), auto !important; }
+  transform: translateY(-50%); }
 
 .record:hover .rec-inner {
   width: 44px;
-  height: 44px;
-  cursor: url(../images/cursor/hover.png), auto !important; }
+  height: 44px; }
 
 .svg-button {
   display: inline-block;
   vertical-align: middle; }
 
-.temp a:hover {
-  cursor: url(../images/cursor/hover.png), auto !important; }
+.tempo a:hover {
+  cursor: pointer; }
 
 .start {
   background: url(../images/start/start.svg) no-repeat center center;
@@ -179,7 +182,7 @@ button, .btn {
   width: 129px;
   height: 57px;
   margin-left: 10px; }
-  .how-to:hover {
+  .how-to:hover, .how-to.btn-enabled {
     background: url(../images/start/how-to-hover.svg) no-repeat center center; }
 
 .wrap-beat {
@@ -266,12 +269,12 @@ button, .btn {
   .ho-ho-ho:hover, .ho-ho-ho.btn-enabled {
     background: url(../images/soundboard/ho-ho-ho-hover.svg) no-repeat center center; }
 
-.gun-shot {
-  background: url(../images/soundboard/gun-shot.svg) no-repeat center center;
+.chimes {
+  background: url(../images/soundboard/chimes.svg) no-repeat center center;
   width: 207px;
   height: 102px; }
-  .gun-shot:hover, .gun-shot.btn-enabled {
-    background: url(../images/soundboard/gun-shot-hover.svg) no-repeat center center; }
+  .chimes:hover, .chimes.btn-enabled {
+    background: url(../images/soundboard/chimes-hover.svg) no-repeat center center; }
 
 .fog-horn {
   background: url(../images/soundboard/fog-horn.svg) no-repeat center center;
@@ -391,6 +394,32 @@ button, .btn {
   height: 48px; }
   .share-fb:hover, .share-fb.btn-enabled {
     background: url(../images/card/share-fb-hover.svg) no-repeat center center; }
+
+.share-email {
+  background: url(../images/card/share-email.svg) no-repeat center center;
+  width: 51px;
+  height: 48px; }
+  .share-email:hover, .share-email.btn-enabled {
+    background: url(../images/card/share-email-hover.svg) no-repeat center center; }
+
+.close {
+  background: url(../images/card/close.svg) no-repeat center center;
+  width: 18px;
+  height: 24px;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  z-index: 400; }
+
+.rsq {
+  background: url(../images/rsq.svg) no-repeat center center;
+  width: 82px;
+  height: 43px; }
+
+.gaming {
+  background: url(../images/gaming.svg) no-repeat center center;
+  width: 194px;
+  height: 25px; }
 
 .m0 {
   margin: 0; }
@@ -583,9 +612,6 @@ html, body {
   width: 100%;
   height: 100%; }
 
-a:hover {
-  cursor: url(../images/cursor/hover.png), auto !important; }
-
 .wrapper {
   width: 90%;
   max-width: 900px;
@@ -593,41 +619,6 @@ a:hover {
   .wrapper p {
     width: 65%;
     margin: 1rem auto 1rem auto; }
-
-.toolbar {
-  position: fixed;
-  width: auto;
-  left: 0;
-  bottom: 0;
-  z-index: 1;
-  margin: 0 auto;
-  width: 100%; }
-
-.tools {
-  background: url(../images/soundboard/toolbar.svg);
-  width: 300px;
-  background-size: cover;
-  margin: 0 auto; }
-
-.tempo {
-  line-height: 1; }
-
-.controls > div {
-  display: inline-block;
-  vertical-align: middle; }
-
-.builder {
-  padding-bottom: 140px; }
-
-.progress-bar {
-  width: 92%;
-  background: #000;
-  height: 8px;
-  margin: 0 auto; }
-  .progress-bar .current-progress {
-    background: #ab3434;
-    height: 8px;
-    width: 0%; }
 
 .grid {
   margin: 0 0 1rem 0; }
@@ -703,11 +694,22 @@ hr {
 body {
   background: #89cde0; }
 
+.logo {
+  background: url(../images/themerrymaker.svg) no-repeat top center;
+  width: 100%;
+  height: 500px;
+  background-size: contain;
+  margin-top: 100px; }
+
 .loading {
+  z-index: 9;
   height: 100%;
   width: 100%;
   top: 0;
   position: fixed; }
+
+.loading.screen {
+  z-index: 9; }
 
 .screen {
   background: #89cde0;
@@ -720,14 +722,61 @@ body {
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); }
 
-.loading {
-  z-index: 9; }
-
 .start-screen {
   z-index: 8; }
 
+.start-credit {
+  font-size: .7rem; }
+
+.toolbar {
+  position: fixed;
+  width: auto;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  margin: 0 auto;
+  width: 100%; }
+
+.tools {
+  background: url(../images/soundboard/toolbar.svg);
+  width: 300px;
+  background-size: cover;
+  margin: 0 auto; }
+
+.tempo {
+  line-height: 1; }
+
+.controls > div {
+  display: inline-block;
+  vertical-align: middle; }
+
+.builder {
+  padding-bottom: 140px; }
+
+.progress-bar {
+  width: 92%;
+  background: #000;
+  height: 8px;
+  margin: 0 auto; }
+  .progress-bar .current-progress {
+    background: #ab3434;
+    height: 8px;
+    width: 0%; }
+
+.credit {
+  z-index: 8;
+  position: absolute;
+  left: 20px;
+  bottom: 10px; }
+
+.other {
+  z-index: 8;
+  position: absolute;
+  right: 20px;
+  bottom: 10px; }
+
 .overlay {
-  z-index: 6;
+  z-index: 9;
   background: rgba(0, 0, 0, 0.7);
   height: 100%;
   width: 100%;
@@ -735,7 +784,7 @@ body {
   position: fixed; }
 
 .modal {
-  z-index: 7;
+  z-index: 9;
   padding: 50px;
   position: fixed;
   top: 50%;
@@ -775,8 +824,6 @@ body {
   position: fixed; }
 
 .greetings {
-  width: 100%;
-  height: 100%;
   margin-top: 100px; }
 
 .greeting-selectors {
@@ -801,13 +848,6 @@ body {
 
   100% {
     margin-top: 0px; } }
-
-.logo {
-  background: url(../images/themerrymaker.svg) no-repeat top center;
-  width: 100%;
-  height: 500px;
-  background-size: contain;
-  margin-top: 100px; }
 
 @-webkit-keyframes up-down {
   0% {

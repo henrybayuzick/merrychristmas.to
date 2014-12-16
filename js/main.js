@@ -11,25 +11,32 @@ Tone.Transport.setInterval(function(){
 },"0:0:1")
 // End debug
 
-// If not a card, redirect to create page
-if ($('[data-card-id]').data('value') == -1) {
-  window.location.href = "/create"
-}
+// // If not a card, redirect to create page
+// if ($('[data-card-id]').data('value') == -1) {
+//   window.location.href = "/create"
+// }
+
+$('body').waitForImages(function() {
+    console.log('All images have loaded.');
+}, function(loaded, count, success) {
+   console.log(loaded + ' of ' + count + ' images has ' + (success ? 'loaded' : 'failed to load') +  '.');
+   $(this).addClass('loaded');
+});
 
 // Greetings
 var currentGreeting = 0;
 var greetings = [
-  "/images/greetings/merry-christmas.svg",
-  "/images/greetings/be-careful.svg",
-  "/images/greetings/or-whatever.svg",
-  "/images/greetings/heres-to.svg"
+  '<img src="/images/greetings/merry-christmas.svg" height="230">',
+  '<img src="/images/greetings/be-careful.svg" height="350">',
+  '<img src="/images/greetings/or-whatever.svg" height="350">',
+  '<img src="/images/greetings/heres-to.svg" height="350">'
 ]
 
 function changeGreeting() {
   if (cardPreview == true) {
     allData.greeting = currentGreeting;
   }
-  $('[data-greeting]').attr("src", greetings[currentGreeting]);
+  $('[data-greeting]').html(greetings[currentGreeting]);
 };
 
 changeGreeting();
@@ -41,7 +48,11 @@ var backgrounds = [
   "http://media.giphy.com/media/OeoPXQPSzteiA/giphy.gif",
   "http://media.giphy.com/media/LJrMjb87w16q4/giphy.gif",
   "http://media.giphy.com/media/fKfz1mB6FexMY/giphy.gif",
-  "http://media.giphy.com/media/10swQPVv0kvqp2/giphy.gif"
+  "http://media.giphy.com/media/10swQPVv0kvqp2/giphy.gif",
+  "http://media.giphy.com/media/RRu9WYixQ7NEA/giphy.gif",
+  "http://media.giphy.com/media/riIBhPjFxCbZe/giphy.gif",
+  "http://media.giphy.com/media/5xtDaryAMLjvAyN4eiY/giphy.gif",
+  "http://media.giphy.com/media/WhH6GrITyXVpC/giphy.gif",
 ]
 
 function changeBackground() {
@@ -52,6 +63,7 @@ function changeBackground() {
 };
 
 changeBackground();
+
 
 // Samples
 var audioDirectory            = "/audio/";

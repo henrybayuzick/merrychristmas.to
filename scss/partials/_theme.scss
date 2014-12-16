@@ -2,12 +2,27 @@ body {
 	background: $blue;
 }
 
+.logo {
+	background:url(../images/themerrymaker.svg) no-repeat top center;
+	width:100%;
+	height:500px;
+	background-size:contain;
+	margin-top:100px;
+	//position:relative;
+	// top:-200px;
+	// -webkit-animation: up-down 7s ease infinite;
+	//         animation: up-down 7s ease infinite;
+}
+
 .loading {
-		height:100%;
+	z-index:9;
+	height:100%;
 	width:100%;
 	top:0;
 	position: fixed;
 }
+
+.loading.screen { z-index:9; }
 
 .screen {
 	background:$blue;
@@ -23,20 +38,71 @@ body {
 	}
 }
 
-.loading {
-	z-index:9;
+.start-screen { z-index:8; }
+
+.start-credit { font-size:.7rem; }
+
+.toolbar {
+	position:fixed;
+	width:auto;
+	left:0;
+	bottom:0;
+	z-index:1;
+	margin:0 auto;
+	width:100%;
 }
 
-.start-screen {
-	z-index:8;
+.tools {
+	background: url(../images/soundboard/toolbar.svg);
+	width:300px;
+	background-size:cover;
+	margin: 0 auto;
+}
 
-	p {
-		//margin-top:-150px;
+.tempo {
+	line-height: 1;
+}
+
+.controls > div {
+
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.builder {
+	padding-bottom:140px;
+}
+
+.progress-bar {
+	width:92%;
+	background:#000;
+	height:8px;
+	margin: 0 auto;
+
+	.current-progress {
+		background:$red;
+		height:8px;
+		width:0%;
 	}
 }
 
+.credit {
+	z-index:8;
+	position: absolute;
+	left:20px;
+	bottom:10px;
+}
+
+.other {
+	z-index:8;
+	position: absolute;
+	right:20px;
+	bottom:10px;
+}
+
+
 .overlay {
-	z-index:6;
+	z-index:9;
 	background:rgba(0,0,0,0.7);
 	height:100%;
 	width:100%;
@@ -45,7 +111,7 @@ body {
 }
 
 .modal {
-	z-index:7;
+	z-index:9;
 	padding:50px;
 	position: fixed;
 	top: 50%;
@@ -91,10 +157,7 @@ body {
 }
 
 .greetings {
-	width:100%;
-	height:100%;
 	margin-top:100px;
-
 }
 
 .greeting-selectors {
@@ -116,18 +179,6 @@ body {
 @keyframes drop-in {
 	0% { margin-top:-230px; }
 	100% { margin-top:0px; }
-}
-
-.logo {
-	background:url(../images/themerrymaker.svg) no-repeat top center;
-	width:100%;
-	height:500px;
-	background-size:contain;
-	margin-top:100px;
-	//position:relative;
-	// top:-200px;
-	// -webkit-animation: up-down 7s ease infinite;
-	//         animation: up-down 7s ease infinite;
 }
 
 @-webkit-keyframes up-down {
